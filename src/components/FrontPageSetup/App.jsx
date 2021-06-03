@@ -1,7 +1,6 @@
 import React from "react";
 import FirstCarousel from "./Carousel";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../Header";
 import Menu from "./Menu";
 
 function App(){
@@ -10,7 +9,6 @@ function App(){
             <Header/>
             <FirstCarousel/>
             <Menu/>
-            <Footer/>
         </div>
     );
 }

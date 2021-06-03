@@ -1,28 +1,22 @@
-import React,{useState} from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
-import burger from "../images/burger.jpg";
-import fries from "../images/fries.jpg";
-import pizza from "../images/pizza1.png";
+import burger from "../../images/burger.jpg";
+import pizza from "../../images/pizza1.png";
+import fries from "../../images/fries.jpg"
 
 function FirstCarousel() {
-    const [index, setIndex] = useState(0);
-  
-    const handleSelect = (selectedIndex, e) => {
-      setIndex(selectedIndex);
-    };
-  
     return (
-      <Carousel className="change" activeIndex={index} onSelect={handleSelect} fade>
-        <Carousel.Item >
+      <Carousel className="change" fade>
+        <Carousel.Item>
           <img className="backg" src={burger}/>
           <img
             className="w-100"
             src={burger}
-            alt="Chicken burger"
+            alt="Chicken Burger"
           />
           <Carousel.Caption>
-            <p>Chicken burger</p>
+            <p>Chciken Burger</p>
             <em>now with new chilly sauce</em>
           </Carousel.Caption>
         </Carousel.Item>

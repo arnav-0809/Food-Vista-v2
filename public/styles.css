@@ -1,7 +1,20 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.root {
+    flex: 1;
+    display: block;
+  }
+
 body{
     background-image: linear-gradient(90deg,rgb(16, 24, 24),rgb(136, 130, 130),rgb(16, 24, 24)) !important;
 }
 
+/* ----------------------------------FrontPage css------------------------------------------ */
 .w-100 {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0, 0.2); /* Black w/opacity/see-through */
@@ -63,15 +76,27 @@ body{
     background-color: rgb(16, 24, 24) !important;
 }
 
-footer{
-    position: relative;
-    bottom: 0;
+/* .footer{
+  background:#662e8c;
+  margin-top:-100px;
+  height:100px;
+  color:#fff;
+  position:relative;
+  line-height:180%;
+  padding:0 10px;
+} */
+
+
+
+.footer{
+    height:210px;
     width: 100%;
     color:rgb(136, 130, 130);
     background:#343a40;
     border:5px solid rgb(136, 130, 130);
     padding:20px 15px 5px 15px;
 }
+
 
 .face:hover,.insta:hover,.linked:hover,.email:hover{
     color:rgb(240, 94, 94);
@@ -133,3 +158,77 @@ footer{
     color:rgb(240, 94, 94);
     margin-top: 40%;
 }
+
+/*---------------------------------------- Front Page CSS ENDS-------------------------------------- */
+
+
+/*------------------------------------------ReviewSection CSS-----------------------------------------------*/
+.note {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 10px;
+    width: 240px;
+    margin: 16px;
+    float: left;
+  }
+  .note h1 {
+    font-size: 1.1em;
+    margin-bottom: 6px;
+  }
+  .note p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  .note button {
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    color: #f5ba13;
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  form.create-note {
+    position: relative;
+    width: 480px;
+    margin: 30px auto 20px auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+  }
+  form.create-note input,
+  form.create-note textarea {
+    width: 100%;
+    border: none;
+    padding: 4px;
+    outline: none;
+    font-size: 1.2em;
+    font-family: inherit;
+    resize: none;
+  }
+  
+  form.create-note button {
+    position: absolute;
+    right: 18px;
+    bottom: -18px;
+    background: #f5ba13;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    outline: none;
+  }
+
+
+/* --------------------------------------Review Section CSS ENDS --------------------------------------------*/

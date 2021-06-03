@@ -1,5 +1,5 @@
 import React from "react";
-import {Container,Row,Col,Card} from "react-bootstrap";
+import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "./CardLay";
 import itemParents from "./MainpageComp";
 

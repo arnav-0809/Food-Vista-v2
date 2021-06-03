@@ -1,5 +1,6 @@
 import React from "react";
 import {Facebook,Instagram,LinkedIn,Email} from "@material-ui/icons";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Footer(){
 const color={
