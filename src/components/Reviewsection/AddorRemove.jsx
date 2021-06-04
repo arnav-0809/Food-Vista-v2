@@ -4,19 +4,19 @@ import CreateReview from "./CreateReview";
 
 function App() {
 
-  const[notes,setNotes]=useState([]);
+  const[reviews,setReviews]=useState([]);
 
 
-  function addNote(newNote){
-    setNotes(prevNotes=>{
-      return[...prevNotes,newNote];
+  function addReview(newReview){
+    setReviews(prevReviews=>{
+      return[...prevReviews,newReview];
     });
-    console.log(newNote);
+    console.log(newReview);
   }
 
-  function deleteNote(id){
-    setNotes(prevNotes=>{
-      return prevNotes.filter((noteItem,index)=>{
+  function deleteReview(id){
+    setReviews(prevReviews=>{
+      return prevReviews.filter((reviewItem,index)=>{
         return index!==id;
       });
     });
@@ -24,15 +24,15 @@ function App() {
 
   return (
     <div>
-      <CreateReview onAdd={addNote}/>
+      <CreateReview onAdd={addReview}/>
       {
-        notes.map((note,index)=>{
+        reviews.map((review,index)=>{
         return <Review
         key={index}
         id={index}
-        title={note.title}
-        content={note.content}
-        onDelete={deleteNote}
+        title={review.title}
+        content={review.content}
+        onDelete={deleteReview}
         />
       })
       }

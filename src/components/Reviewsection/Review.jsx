@@ -9,7 +9,7 @@ function Review(props) {
 
 
   return (
-    <div className="note">
+    <div className="review">
       <h1>{props.title}</h1>
       <p>{props.content}</p>
       <button onClick={handleClick}><DeleteIcon/></button>
