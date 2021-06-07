@@ -1,58 +1,58 @@
-const menuParents=[
+const shakeParents=[
     {
         id:1,
-        name:"Ham Burger",
+        name:"Chocolate",
         imgURL:"images/burger.jpg",
         alt:"burger"
     },
     {
         id:2,
-        name:"Cheese Burger",
+        name:"Kit kat",
         imgURL:"images/pizza1.png",
         alt:"pizza"
     },
     {
         id:3,
-        name:"Aloo Burger",
+        name:"Oreo",
         imgURL:"images/waffle.jpg",
         alt:"waffle"
     },
     {
         id:4,
-        name:"Egg Burger",
+        name:"Hazelnut",
         imgURL:"images/fries.jpg",
         alt:"fries"
     },
     {
         id:5,
-        name:"Fish Burger",
+        name:"Strawberry",
         imgURL:"images/momos.png",
         alt:"momos"
     },
     {
         id:6,
-        name:"Supreme Burger",
+        name:"Blue Berry",
         imgURL:"images/kitkat.jpg",
         alt:"shake"
     },
     {
         id:7,
-        name:"Luger Burger",
+        name:"Black Currant",
         imgURL:"images/brownie.jpg",
         alt:"brownie"
     },
     {
         id:8,
-        name:"Chicken Burger",
+        name:"Butterscotch",
         imgURL:"images/pasta.jpg",
         alt:"pasta"
     },
     {
         id:9,
-        name:"Veggie Burger",
+        name:"Choco Crumb",
         imgURL:"images/garlic.jpg",
         alt:"garlic bread"
     }
 ];
 
-export default menuParents;
+export default shakeParents;

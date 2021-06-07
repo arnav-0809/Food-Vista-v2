@@ -1,17 +1,17 @@
 import React from "react";
 import {Container,Row,Col} from "react-bootstrap";
-import CardLay from "./CardLayMenu";
-import itemParents from "./MenuComp";
+import CardLay from "../CardLayMenu";
+import momos from "../menudetails/Momos";
 
 function Menu(){
 return(
 <Container>
     <Row className="justify-content-center">
-        <Col xs={10} sm={9} md={11} lg={8} className="menuHead">BurgerMenu</Col>
+        <Col xs={10} sm={9} md={11} lg={8} className="menuHead">MomosMenu</Col>
     </Row>
 {/*1st row*/}
     <Row className="justify-content-center">
-        {itemParents.slice(0,3).map((item)=>(
+        {momos.slice(0,3).map((item)=>(
             <CardLay
                 key={item.id}
                 name={item.name}
@@ -22,7 +22,7 @@ return(
 
 {/*2nd row*/}
     <Row className="justify-content-center">
-    {itemParents.slice(3,6).map((item)=>(
+    {momos.slice(3,6).map((item)=>(
             <CardLay
                 key={item.id}
                 name={item.name}
@@ -33,7 +33,7 @@ return(
 
 {/*3rd row*/}
     <Row className="justify-content-center">
-    {itemParents.slice(6,9).map((item)=>(
+    {momos.slice(6,9).map((item)=>(
             <CardLay
                 key={item.id}
                 name={item.name}

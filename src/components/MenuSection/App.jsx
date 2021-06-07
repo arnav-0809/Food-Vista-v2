@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../Header";
-import AddorRem from "./AddorRemItem";
+import Burger from "./MenuCard/Burger";
 
 function App(){
     return(
         <div>
         <Header/>
-        <AddorRem/>
+        <Burger/>
         </div>
     );
 }
