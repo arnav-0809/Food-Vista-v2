@@ -7,7 +7,7 @@ function Menu(){
 return(
 <Container>
     <Row className="justify-content-center">
-        <Col xs={10} sm={9} md={11} lg={8} className="menuHead">FriesrMenu</Col>
+        <Col xs={10} sm={9} md={11} lg={8} className="menuHead">FriesMenu</Col>
     </Row>
 {/*1st row*/}
     <Row className="justify-content-center">

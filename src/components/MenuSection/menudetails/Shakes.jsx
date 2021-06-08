@@ -2,56 +2,56 @@ const shakeParents=[
     {
         id:1,
         name:"Chocolate",
-        imgURL:"images/burger.jpg",
-        alt:"burger"
+        imgURL:"images/shakes/1.jpg",
+        alt:"Chocolate"
     },
     {
         id:2,
         name:"Kit kat",
-        imgURL:"images/pizza1.png",
-        alt:"pizza"
+        imgURL:"images/kitkat.jpg",
+        alt:"Kit kat"
     },
     {
         id:3,
         name:"Oreo",
-        imgURL:"images/waffle.jpg",
-        alt:"waffle"
+        imgURL:"images/shakes/2.jpg",
+        alt:"Oreo"
     },
     {
         id:4,
         name:"Hazelnut",
-        imgURL:"images/fries.jpg",
-        alt:"fries"
+        imgURL:"images/shakes/3.jpg",
+        alt:"Hazelnut"
     },
     {
         id:5,
         name:"Strawberry",
-        imgURL:"images/momos.png",
-        alt:"momos"
+        imgURL:"images/shakes/4.jpg",
+        alt:"Strawberry"
     },
     {
         id:6,
         name:"Blue Berry",
-        imgURL:"images/kitkat.jpg",
-        alt:"shake"
+        imgURL:"images/shakes/5.jpg",
+        alt:"Blue Berry"
     },
     {
         id:7,
-        name:"Black Currant",
-        imgURL:"images/brownie.jpg",
+        name:"Brownie",
+        imgURL:"images/shakes/6.jpg",
         alt:"brownie"
     },
     {
         id:8,
         name:"Butterscotch",
-        imgURL:"images/pasta.jpg",
-        alt:"pasta"
+        imgURL:"images/shakes/7.jpg",
+        alt:"Butterscotch"
     },
     {
         id:9,
         name:"Choco Crumb",
-        imgURL:"images/garlic.jpg",
-        alt:"garlic bread"
+        imgURL:"images/shakes/8.jpg",
+        alt:"Choco Crumb"
     }
 ];
 

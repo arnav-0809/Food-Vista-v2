@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../Header";
-import Burger from "./MenuCard/Burger";
+import Burger from "./MenuCard/Pasta";
 
 function App(){
     return(

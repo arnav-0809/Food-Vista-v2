@@ -2,56 +2,56 @@ const pastryParents=[
     {
         id:1,
         name:"Choco Chip",
-        imgURL:"images/burger.jpg",
-        alt:"burger"
+        imgURL:"images/pastry/1.jpg",
+        alt:"Choco Chip"
     },
     {
         id:2,
         name:"Blueberry",
-        imgURL:"images/pizza1.png",
-        alt:"pizza"
+        imgURL:"images/pastry/2.jpg",
+        alt:"Blueberry"
     },
     {
         id:3,
-        name:"Brownie",
-        imgURL:"images/waffle.jpg",
-        alt:"waffle"
+        name:"Choc. Truffle",
+        imgURL:"images/pastry/3.jpg",
+        alt:"Choc. Truffle"
     },
     {
         id:4,
         name:"Choco Lava",
-        imgURL:"images/fries.jpg",
-        alt:"fries"
+        imgURL:"images/pastry/4.jpg",
+        alt:"Choco Lava"
     },
     {
         id:5,
         name:"Red Velvet",
-        imgURL:"images/momos.png",
-        alt:"momos"
+        imgURL:"images/pastry/5.jpg",
+        alt:"Red Velvet"
     },
     {
         id:6,
         name:"Butterscotch",
-        imgURL:"images/kitkat.jpg",
-        alt:"shake"
+        imgURL:"images/pastry/6.jpg",
+        alt:"Butterscotch"
     },
     {
         id:7,
-        name:"Choc.Truffle",
+        name:"Brownie",
         imgURL:"images/brownie.jpg",
-        alt:"brownie"
+        alt:"Brownie"
     },
     {
         id:8,
         name:"Strawberry",
-        imgURL:"images/pasta.jpg",
-        alt:"pasta"
+        imgURL:"images/pastry/7.jpg",
+        alt:"Strawberry"
     },
     {
         id:9,
         name:"Cheesecake",
-        imgURL:"images/garlic.jpg",
-        alt:"garlic bread"
+        imgURL:"images/pastry/8.jpg",
+        alt:"Cheesecake"
     }
 ];
 

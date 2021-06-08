@@ -49,9 +49,9 @@ const itemParents=[
     },
     {
         id:9,
-        name:"Garlic B. Shop",
-        imgURL:"images/garlic.jpg",
-        alt:"garlic bread"
+        name:"Ice Cream Shop",
+        imgURL:"images/icecream.jpg",
+        alt:"Ice Cream"
     }
 ];
 

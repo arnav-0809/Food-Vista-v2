@@ -2,56 +2,56 @@ const iceCreamParents=[
     {
         id:1,
         name:"Chocolate",
-        imgURL:"images/burger.jpg",
-        alt:"burger"
+        imgURL:"images/icecream.jpg",
+        alt:"Chocolate"
     },
     {
         id:2,
         name:"Strawberry",
-        imgURL:"images/pizza1.png",
-        alt:"pizza"
+        imgURL:"images/icecream/1.jpg",
+        alt:"Strawberry"
     },
     {
         id:3,
         name:"Vanilla",
-        imgURL:"images/waffle.jpg",
-        alt:"waffle"
+        imgURL:"images/icecream/2.jpg",
+        alt:"Vanilla"
     },
     {
         id:4,
         name:"Butterscotch",
-        imgURL:"images/fries.jpg",
-        alt:"fries"
+        imgURL:"images/icecream/3.jpg",
+        alt:"Butterscotch"
     },
     {
         id:5,
         name:"Black Currant",
-        imgURL:"images/momos.png",
-        alt:"momos"
+        imgURL:"images/icecream/4.jpg",
+        alt:"Black Currant"
     },
     {
         id:6,
         name:"Choco Chip",
-        imgURL:"images/kitkat.jpg",
-        alt:"shake"
+        imgURL:"images/icecream/5.jpg",
+        alt:"Choco Chip"
     },
     {
         id:7,
         name:"Belgian Choc.",
-        imgURL:"images/brownie.jpg",
-        alt:"brownie"
+        imgURL:"images/icecream/6.jpg",
+        alt:"Belgian Choc."
     },
     {
         id:8,
         name:"Ice Cream Cake",
-        imgURL:"images/pasta.jpg",
-        alt:"pasta"
+        imgURL:"images/icecream/7.jpg",
+        alt:"Ice Cream Cake"
     },
     {
         id:9,
         name:"Mango",
-        imgURL:"images/garlic.jpg",
-        alt:"garlic bread"
+        imgURL:"images/icecream/8.jpg",
+        alt:"Mango"
     }
 ];
 

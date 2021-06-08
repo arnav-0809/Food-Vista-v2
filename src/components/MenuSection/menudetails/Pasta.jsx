@@ -2,56 +2,56 @@ const pastaParents=[
     {
         id:1,
         name:"Alfredo",
-        imgURL:"images/burger.jpg",
-        alt:"burger"
+        imgURL:"images/pasta/1.jpg",
+        alt:"Alfredo"
     },
     {
         id:2,
         name:"Carbonara",
-        imgURL:"images/pizza1.png",
-        alt:"pizza"
+        imgURL:"images/pasta/2.jpg",
+        alt:"Carbonara"
     },
     {
         id:3,
-        name:"Arabiatta",
-        imgURL:"images/waffle.jpg",
-        alt:"waffle"
+        name:"Arrabiata",
+        imgURL:"images/pasta/3.jpg",
+        alt:"Arrabiata"
     },
     {
         id:4,
         name:"Pesto",
-        imgURL:"images/fries.jpg",
-        alt:"fries"
+        imgURL:"images/pasta/4.jpg",
+        alt:"Pesto"
     },
     {
         id:5,
         name:"Gemelli",
-        imgURL:"images/momos.png",
-        alt:"momos"
+        imgURL:"images/pasta/5.jpg",
+        alt:"Gemelli"
     },
     {
         id:6,
         name:"White Sauce",
-        imgURL:"images/kitkat.jpg",
-        alt:"shake"
+        imgURL:"images/pasta/6.jpg",
+        alt:"White Sauce"
     },
     {
         id:7,
         name:"Red Sauce",
-        imgURL:"images/brownie.jpg",
-        alt:"brownie"
+        imgURL:"images/pasta/7.jpg",
+        alt:"Red Sauce"
     },
     {
         id:8,
         name:"Mixed Sauce",
         imgURL:"images/pasta.jpg",
-        alt:"pasta"
+        alt:"Mixed Sauce"
     },
     {
         id:9,
         name:"Cheesy Pasta",
-        imgURL:"images/garlic.jpg",
-        alt:"garlic bread"
+        imgURL:"images/pasta/8.jpg",
+        alt:"Cheesy Pasta"
     }
 ];
 

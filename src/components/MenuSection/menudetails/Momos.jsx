@@ -2,56 +2,56 @@ const momosParents=[
     {
         id:1,
         name:"Chic. Momos",
-        imgURL:"images/burger.jpg",
-        alt:"burger"
+        imgURL:"images/momos/1.jpg",
+        alt:"Chic. Momos"
     },
     {
         id:2,
         name:"Gravy momos",
-        imgURL:"images/pizza1.png",
-        alt:"pizza"
+        imgURL:"images/momos/2.jpg",
+        alt:"Gravy momos"
     },
     {
         id:3,
         name:"Tandoori",
-        imgURL:"images/waffle.jpg",
-        alt:"waffle"
+        imgURL:"images/momos/3.jpg",
+        alt:"Tandoori"
     },
     {
         id:4,
         name:"Paneer",
-        imgURL:"images/fries.jpg",
-        alt:"fries"
+        imgURL:"images/momos/4.jpg",
+        alt:"Paneer"
     },
     {
         id:5,
         name:"Mix Veg",
         imgURL:"images/momos.png",
-        alt:"momos"
+        alt:"Mix Veg"
     },
     {
         id:6,
         name:"Mutton Seekh",
-        imgURL:"images/kitkat.jpg",
-        alt:"shake"
+        imgURL:"images/momos/5.jpg",
+        alt:"Mutton Seekh"
     },
     {
         id:7,
         name:"Fried",
-        imgURL:"images/brownie.jpg",
-        alt:"brownie"
+        imgURL:"images/momos/6.jpg",
+        alt:"Fried"
     },
     {
         id:8,
         name:"Chilly chicken",
-        imgURL:"images/pasta.jpg",
-        alt:"pasta"
+        imgURL:"images/momos/7.jpg",
+        alt:"Chilly chicken"
     },
     {
         id:9,
         name:"Soya chap",
-        imgURL:"images/garlic.jpg",
-        alt:"garlic bread"
+        imgURL:"images/momos/8.jpg",
+        alt:"Soya chap"
     }
 ];
 
