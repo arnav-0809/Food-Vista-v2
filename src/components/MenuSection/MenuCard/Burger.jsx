@@ -1,9 +1,18 @@
-import React from "react";
+import React,{useState} from "react";
 import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import burger from "../menudetails/Burger";
 
 function Menu(){
+
+const[items,setItems]=useState([]);
+
+function cart(item,count){ 
+    setItems([...items,{item,count}]);
+}
+
+console.log(items);
+
 return(
 <Container>
     <Row className="justify-content-center">
@@ -17,6 +26,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                cart={cart}
             />))}
     </Row>
 
@@ -28,6 +38,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                cart={cart}
             />))}
     </Row>
 
@@ -39,6 +50,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                cart={cart}
             />))}
     </Row>
 </Container>

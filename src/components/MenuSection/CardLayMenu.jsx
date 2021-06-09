@@ -3,14 +3,26 @@ import {Card,Col,Row} from "react-bootstrap";
 
 function CardLay(props){
 var[total,setValue]=useState(0);
+var[items,addItems]=useState({
+    name:"",
+    total:total
+})
 
-function increase(){
-    setValue(total+1);
+function increase(event){
+    event.preventDefault();
+    setValue(prev=>{
+        props.cart(props.name,prev+1);
+        return prev+1;
+    })
+    
 }
 
-function decrease(){
+function decrease(event){
     if(total>0)
-    setValue(total-1);
+    setValue(prev=>{
+        props.cart(props.name,prev-1);
+        return prev-1;
+    })
 }
 
 return(
@@ -23,8 +35,8 @@ return(
 </Card>
 <Row className="justify-content-center addorrem">
 <button className="addrem" onClick={decrease}>-</button>
-<input className="inputs" value={total} size="1" readOnly={true}/>
-<button className="addrem" onClick={increase}>+</button>
+<input className="inputs" value={total} size="1" readOnly/>
+<button className="addrem" onClick={increase} >+</button>
 </Row>
 </Col>
 );
