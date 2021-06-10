@@ -5,13 +5,35 @@ import burger from "../menudetails/Burger";
 
 function Menu(){
 
-const[items,setItems]=useState([]);
+var[items,setItems]=useState([]);
 
 function cart(item,count){ 
-    setItems([...items,{item,count}]);
+    var hello=0;
+    if(items.length===0)
+    {
+        setItems([...items,{item,count}]);
+    }
+    
+    for(let i=0;i<items.length;i++)
+    {
+        if(items[i].item===item)
+        {
+            items[i].count=count;
+            hello=1;
+        }
+        if(items[i].count===0)
+        {
+            items.splice(i,1);
+        }
+    }
+    if(hello===0)
+    {
+        setItems([...items,{item,count}]);
+    }
 }
 
 console.log(items);
+
 
 return(
 <Container>

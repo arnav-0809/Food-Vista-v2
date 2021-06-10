@@ -8,8 +8,7 @@ var[items,addItems]=useState({
     total:total
 })
 
-function increase(event){
-    event.preventDefault();
+function increase(){
     setValue(prev=>{
         props.cart(props.name,prev+1);
         return prev+1;
@@ -17,7 +16,7 @@ function increase(event){
     
 }
 
-function decrease(event){
+function decrease(){
     if(total>0)
     setValue(prev=>{
         props.cart(props.name,prev-1);
