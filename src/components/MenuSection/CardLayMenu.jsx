@@ -3,14 +3,11 @@ import {Card,Col,Row} from "react-bootstrap";
 
 function CardLay(props){
 var[total,setValue]=useState(0);
-var[items,addItems]=useState({
-    name:"",
-    total:total
-})
+
 
 function increase(){
     setValue(prev=>{
-        props.cart(props.name,prev+1);
+        props.cart(props.name,props.price,prev+1);
         return prev+1;
     })
     
@@ -19,7 +16,7 @@ function increase(){
 function decrease(){
     if(total>0)
     setValue(prev=>{
-        props.cart(props.name,prev-1);
+        props.cart(props.name,props.price,prev-1);
         return prev-1;
     })
 }
@@ -30,6 +27,7 @@ return(
     <Card.Img className="itemsIMG" varient="top" src={props.img} alt={props.alt}/>
     <Card.Body>
     <Card.Title><em>{props.name}</em></Card.Title>
+    <Card.Text>Rs.{props.price}</Card.Text>
     </Card.Body>
 </Card>
 <Row className="justify-content-center addorrem">

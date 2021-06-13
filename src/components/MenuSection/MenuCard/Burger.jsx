@@ -3,11 +3,13 @@ import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import burger from "../menudetails/Burger";
 
+
+
 function Menu(){
 
 var[items,setItems]=useState([]);
 
-function cart(item,count){ 
+function cart(item,price,count){ 
     var hello=0;
     if(items.length===0)
     {
@@ -30,6 +32,7 @@ function cart(item,count){
     {
         setItems([...items,{item,count}]);
     }
+    
 }
 
 console.log(items);
@@ -48,6 +51,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                price={item.price}
                 cart={cart}
             />))}
     </Row>
@@ -60,6 +64,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                price={item.price}
                 cart={cart}
             />))}
     </Row>
@@ -72,6 +77,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                price={item.price}
                 cart={cart}
             />))}
     </Row>

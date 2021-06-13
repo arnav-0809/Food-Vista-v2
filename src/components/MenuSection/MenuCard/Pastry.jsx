@@ -1,9 +1,40 @@
-import React from "react";
+import React,{useState} from "react";
 import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import pastry from "../menudetails/Pastry";
+import { useState } from "react";
 
 function Menu(){
+
+var[items,setItems]=useState([]);
+
+function cart(item,count){ 
+    var hello=0;
+    if(items.length===0)
+    {
+        setItems([...items,{item,count}]);
+    }
+    
+    for(let i=0;i<items.length;i++)
+    {
+        if(items[i].item===item)
+        {
+            items[i].count=count;
+            hello=1;
+        }
+        if(items[i].count===0)
+        {
+            items.splice(i,1);
+        }
+    }
+    if(hello===0)
+    {
+        setItems([...items,{item,count}]);
+    }
+}
+
+console.log(items);
+
 return(
 <Container>
     <Row className="justify-content-center">
@@ -17,6 +48,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                cart={cart}
             />))}
     </Row>
 
@@ -28,6 +60,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                cart={cart}
             />))}
     </Row>
 
@@ -39,6 +72,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                cart={cart}
             />))}
     </Row>
 </Container>
