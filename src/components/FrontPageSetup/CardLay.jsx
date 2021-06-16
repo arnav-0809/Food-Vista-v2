@@ -1,7 +1,9 @@
 import React from "react";
 import {Card,Col} from "react-bootstrap";
+import {Link} from "react-router-dom"
 
 function CardLay(props){
+const address=props.alt+"menu";
 return(
 <Col xs={7} sm={7} md={4} lg={3} className="contain">
 <Card bg="dark" className="items">
@@ -12,9 +14,9 @@ return(
 </Card>
 
 {/* overlay effect */}
-<a href="#"><div className="overlay">
+<Link to={address}><div className="overlay">
     <p className="overlayText">Click to Order on {props.name} now!!</p>
-</div></a>
+</div></Link>
 </Col>
 );
 }

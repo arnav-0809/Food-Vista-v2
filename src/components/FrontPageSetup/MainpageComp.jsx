@@ -33,13 +33,13 @@ const itemParents=[
         id:6,
         name:"Shake Shop",
         imgURL:"images/kitkat.jpg",
-        alt:"shake"
+        alt:"shakes"
     },
     {
         id:7,
-        name:"Brownie Shop",
+        name:"Pastry Shop",
         imgURL:"images/brownie.jpg",
-        alt:"brownie"
+        alt:"pastry"
     },
     {
         id:8,
@@ -51,7 +51,7 @@ const itemParents=[
         id:9,
         name:"Ice Cream Shop",
         imgURL:"images/icecream.jpg",
-        alt:"Ice Cream"
+        alt:"icecream"
     }
 ];
 
