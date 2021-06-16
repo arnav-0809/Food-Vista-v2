@@ -27,7 +27,7 @@ return(
     <Card.Img className="itemsIMG" varient="top" src={props.img} alt={props.alt}/>
     <Card.Body>
     <Card.Title><em>{props.name}</em></Card.Title>
-    <Card.Text>Rs.{props.price}</Card.Text>
+    <Card.Text className="priceText">Rs.{props.price}</Card.Text>
     </Card.Body>
 </Card>
 <Row className="justify-content-center addorrem">

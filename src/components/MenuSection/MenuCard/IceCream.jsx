@@ -6,8 +6,9 @@ import iceCream from "../menudetails/IceCream";
 function Menu(){
 
 var[items,setItems]=useState([]);
+var[totalPrice,setTotalPrice]=useState(0);
 
-function cart(item,count){ 
+function cart(item,price,count){ 
     var hello=0;
     if(items.length===0)
     {
@@ -18,7 +19,15 @@ function cart(item,count){
     {
         if(items[i].item===item)
         {
+            let counter=0;
+            counter=items[i].count;
             items[i].count=count;
+            setTotalPrice(prev=>{
+                if(count>counter)
+                return parseInt(prev)+parseInt(price);
+                else
+                return parseInt(prev)-parseInt(price);
+            })
             hello=1;
         }
         if(items[i].count===0)
@@ -29,15 +38,19 @@ function cart(item,count){
     if(hello===0)
     {
         setItems([...items,{item,count}]);
+        setTotalPrice(prev=>{
+            return parseInt(prev)+parseInt(price);
+        })
     }
+    
 }
 
-console.log(items);
+console.log(items,totalPrice);
 
 return(
 <Container>
     <Row className="justify-content-center">
-        <Col xs={10} sm={9} md={11} lg={8} className="menuHead">IceCreamMenu</Col>
+        <Col xs={11} sm={9} md={11} lg={8} className="menuHead">IceCream<br/>Menu</Col>
     </Row>
 {/*1st row*/}
     <Row className="justify-content-center">
@@ -47,6 +60,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                price={item.price}
                 cart={cart}
             />))}
     </Row>
@@ -59,6 +73,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                price={item.price}
                 cart={cart}
             />))}
     </Row>
@@ -71,6 +86,7 @@ return(
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
+                price={item.price}
                 cart={cart}
             />))}
     </Row>

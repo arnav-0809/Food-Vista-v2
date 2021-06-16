@@ -286,6 +286,11 @@ form.create-review button {
     border-radius: 5px;
 }
 
+.priceText{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 18px;
+}
+
 
 /*--------------------------------------Menu Section for different type of food items ends------------------------------*/
 

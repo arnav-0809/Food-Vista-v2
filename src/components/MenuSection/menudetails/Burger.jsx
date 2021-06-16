@@ -3,14 +3,14 @@ const burgerParents=[
         id:1,
         name:"Ham Burger",
         imgURL:"images/burger/1.jpg",
-        price:"100",
+        price:"200",
         alt:"Ham Burger"
     },
     {
         id:2,
         name:"Cheese Burger",
         imgURL:"images/burger/2.jpg",
-        price:"100",
+        price:"120",
         alt:"Cheese Burger"
     },
     {
@@ -31,28 +31,28 @@ const burgerParents=[
         id:5,
         name:"Fish Burger",
         imgURL:"images/burger/5.jpg",
-        price:"100",
+        price:"150",
         alt:"Fish Burger"
     },
     {
         id:6,
         name:"Supreme Burger",
         imgURL:"images/burger/6.jpg",
-        price:"100",
+        price:"170",
         alt:"Supreme Burger"
     },
     {
         id:7,
         name:"Luger Burger",
         imgURL:"images/burger/7.jpg",
-        price:"100",
+        price:"140",
         alt:"Luger Burger"
     },
     {
         id:8,
         name:"Chicken Burger",
         imgURL:"images/burger/8.jpg",
-        price:"100",
+        price:"110",
         alt:"Chicken Burger"
     },
     {
