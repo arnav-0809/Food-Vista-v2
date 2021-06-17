@@ -3,6 +3,19 @@ import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import pasta from "../menudetails/Pasta";
 
+function pastaOrder(...items){
+    var itemDets=items;
+    console.log(itemDets);
+    return itemDets;
+}
+
+function pastaPrice(price)
+{
+    var price=price;
+    console.log(price);
+    return price;
+}
+
 function Menu(){
 
 var[items,setItems]=useState([]);

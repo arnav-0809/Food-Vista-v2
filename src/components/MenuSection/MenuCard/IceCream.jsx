@@ -3,6 +3,20 @@ import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import iceCream from "../menudetails/IceCream";
 
+function iceCreamOrder(...items){
+    var itemDets=items;
+    console.log(itemDets);
+    return itemDets;
+}
+
+function iceCreamPrice(price)
+{
+    var price=price;
+    console.log(price);
+    return price;
+}
+
+
 function Menu(){
 
 var[items,setItems]=useState([]);

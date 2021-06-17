@@ -3,6 +3,20 @@ import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import pastry from "../menudetails/Pastry";
 
+function pastryOrder(...items){
+    var itemDets=items;
+    console.log(itemDets);
+    return itemDets;
+}
+
+function pastryPrice(price)
+{
+    var price=price;
+    console.log(price);
+    return price;
+}
+
+
 function Menu(){
 
 var[items,setItems]=useState([]);

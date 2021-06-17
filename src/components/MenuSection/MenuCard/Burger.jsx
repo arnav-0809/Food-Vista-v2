@@ -4,6 +4,19 @@ import CardLay from "../CardLayMenu";
 import burger from "../menudetails/Burger";
 
 
+function burgerOrder(...items){
+    var itemDets=items;
+    // console.log(itemDets);
+    return itemDets;
+}
+
+function burgerPrice(price)
+{
+    var price=price;
+    // console.log(price);
+    return price;
+}
+
 
 function Menu(){
 
@@ -15,6 +28,7 @@ function cart(item,price,count){
     if(items.length===0)
     {
         setItems([...items,{item,count}]);
+        localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
     }
     
     for(let i=0;i<items.length;i++)
@@ -26,10 +40,16 @@ function cart(item,price,count){
             items[i].count=count;
             setTotalPrice(prev=>{
                 if(count>counter)
-                return parseInt(prev)+parseInt(price);
-                else
-                return parseInt(prev)-parseInt(price);
+                {
+                    localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
+                    return parseInt(prev)+parseInt(price);
+                }
+                else{
+                    localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)-parseInt(price)));
+                    return parseInt(prev)-parseInt(price);
+                }
             })
+            
             hello=1;
         }
         if(items[i].count===0)
@@ -40,14 +60,17 @@ function cart(item,price,count){
     if(hello===0)
     {
         setItems([...items,{item,count}]);
+        localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
         setTotalPrice(prev=>{
+            localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
             return parseInt(prev)+parseInt(price);
         })
     }
-    
 }
 
-console.log(items,totalPrice);
+burgerOrder(...items);
+burgerPrice(totalPrice);
+// console.log(items,totalPrice);
 
 
 return(
@@ -98,3 +121,4 @@ return(
 }
 
 export default Menu;
+export {burgerOrder,burgerPrice};
