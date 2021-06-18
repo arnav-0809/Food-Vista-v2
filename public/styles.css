@@ -298,7 +298,30 @@ form.create-review button {
 /*------------------------------------------------------Cart section----------------------------------------------------*/
 
 
-
+.cart {
+    background: #343a40;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px rgb(138, 137, 137);
+    padding: 10px;
+    width: 70%;
+    margin: 16px;
+    float: left;
+    font-family: 'Roboto Mono', monospace;
+}
+    
+.cart h1 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color:rgb(240, 94, 94)
+}
+.cart p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color:rgb(138, 137, 137);
+}
 
 
 

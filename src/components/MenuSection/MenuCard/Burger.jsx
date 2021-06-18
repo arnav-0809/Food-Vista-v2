@@ -56,6 +56,7 @@ function cart(item,price,count){
         {
             items.splice(i,1);
         }
+        localStorage.setItem('ITEM',JSON.stringify([...items]));
     }
     if(hello===0)
     {

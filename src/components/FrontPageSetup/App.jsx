@@ -12,6 +12,7 @@ import Pastry from "../MenuSection/MenuCard/Pastry"
 import Pizza from "../MenuSection/MenuCard/Pizza"
 import Shakes from "../MenuSection/MenuCard/Shakes"
 import Waffle from "../MenuSection/MenuCard/Waffle"
+import Cart from "../CartSection/CartLay"
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 function App(){
@@ -31,6 +32,7 @@ function App(){
             <Route path="/pizzamenu" component={Pizza}/>
             <Route path="/shakesmenu" component={Shakes}/>
             <Route path="/wafflemenu" component={Waffle}/>
+            <Route path="/cart" component={Cart}/>
             </Switch>
         </div>
         </Router>

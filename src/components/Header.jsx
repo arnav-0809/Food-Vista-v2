@@ -18,7 +18,9 @@ return(
       <Link to="/review" style={{textDecoration:"none"}}>
         <Nav.Link className="navItem" href="#reviews">Reviews</Nav.Link>
       </Link>
-      <Nav.Link className="navItem" href="#Pricing">Pricing</Nav.Link>
+      <Link to="/cart" style={{textDecoration:"none"}}>
+      <Nav.Link className="navItem" href="#Cart">Cart</Nav.Link>
+      </Link>
     </Nav>
     </Navbar.Collapse>
   </Navbar>

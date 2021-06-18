@@ -27,6 +27,7 @@ function cart(item,price,count){
     if(items.length===0)
     {
         setItems([...items,{item,count}]);
+        localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
     }
     
     for(let i=0;i<items.length;i++)
@@ -38,9 +39,15 @@ function cart(item,price,count){
             items[i].count=count;
             setTotalPrice(prev=>{
                 if(count>counter)
-                return parseInt(prev)+parseInt(price);
+                {
+                    localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
+                    return parseInt(prev)+parseInt(price);
+                }
                 else
-                return parseInt(prev)-parseInt(price);
+                {
+                    localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)-parseInt(price)));
+                    return parseInt(prev)-parseInt(price);
+                }
             })
             hello=1;
         }
@@ -48,10 +55,12 @@ function cart(item,price,count){
         {
             items.splice(i,1);
         }
+        localStorage.setItem('ITEM',JSON.stringify([...items]));
     }
     if(hello===0)
     {
         setItems([...items,{item,count}]);
+        localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
         setTotalPrice(prev=>{
             return parseInt(prev)+parseInt(price);
         })
@@ -59,6 +68,8 @@ function cart(item,price,count){
     
 }
 
+friesOrder(...items);
+friesPrice(totalPrice);
 console.log(items,totalPrice);
 
 
@@ -110,3 +121,4 @@ return(
 }
 
 export default Menu;
+export {friesOrder,friesPrice};
