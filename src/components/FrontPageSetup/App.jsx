@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import FirstCarousel from "./Carousel";
 import Header from "../Header";
 import Menu from "./Menu";
@@ -16,6 +16,15 @@ import Cart from "../CartSection/CartLay"
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 function App(){
+
+    async function getData(){
+        const response= await fetch("http://localhost:8080");
+        const data= await response.json();
+        console.log(data);
+    }
+
+    useEffect(()=>{getData()},[]);
+
     return (
         <Router>
         <div>
