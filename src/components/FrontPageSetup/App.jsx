@@ -13,17 +13,29 @@ import Pizza from "../MenuSection/MenuCard/Pizza"
 import Shakes from "../MenuSection/MenuCard/Shakes"
 import Waffle from "../MenuSection/MenuCard/Waffle"
 import Cart from "../CartSection/CartLay"
+import {burgerOrder,burgerPrice} from "../MenuSection/MenuCard/Burger"
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 function App(){
 
-    async function getData(){
-        const response= await fetch("http://localhost:8080");
-        const data= await response.json();
-        console.log(data);
-    }
+    // async function postData(){
+    //     const response= await fetch("http://localhost:8080",{
+    //         method:'POST',
+    //         body:JSON.stringify({
+    //             item:burgerOrder(),
+    //             price:burgerPrice(),
+    //         }),
+    //         headers:{"Content-Type":"application/json"}
+    //     })
+    //     .then(function(response){
+    //         return response.json()
+    //       })
+    //     .then(function(body){
+    //         console.log(body);
+    //       });
+    // }
 
-    useEffect(()=>{getData()},[]);
+    // useEffect(()=>{postData()},[]);
 
     return (
         <Router>
