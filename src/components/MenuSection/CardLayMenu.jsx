@@ -1,17 +1,39 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {Card,Col,Row} from "react-bootstrap";
+import axios from "axios";
 
 function CardLay(props){
 var[total,setValue]=useState(0);
+var[items,setItems]=useState([]);
 
 
-function increase(){
+async function increase(){
     setValue(prev=>{
         props.cart(props.name,props.price,prev+1);
         return prev+1;
     })
-    
+     
+
+    const tot=JSON.stringify({
+        id:props.id,
+        item:props.name,
+        count:total+1
+    });
+    const {data}= await axios.post("http://localhost:8080",tot,{
+        headers: {'Content-Type': 'application/json' }
+    });
+
 }
+
+
+const fetchItems= async ()=>{
+    const{data}=await axios.get("http://localhost:8080")
+    setItems(data);
+};
+
+useEffect(()=>{
+    fetchItems();
+},[]);
 
 function decrease(){
     if(total>0)

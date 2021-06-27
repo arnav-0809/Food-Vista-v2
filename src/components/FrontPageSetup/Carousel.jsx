@@ -1,18 +1,16 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
-import burger from "../../images/burger.jpg";
-import pizza from "../../images/pizza1.png";
-import fries from "../../images/fries.jpg"
+
 
 function FirstCarousel() {
     return (
       <Carousel className="change" fade>
         <Carousel.Item>
-          <img className="backg" src={burger}/>
+          <img className="backg" src="images/burger.jpg"/>
           <img
             className="w-100"
-            src={burger}
+            src="images/burger.jpg"
             alt="Chicken Burger"
           />
           <Carousel.Caption>
@@ -21,10 +19,10 @@ function FirstCarousel() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img className="backg" src={pizza}/>
+          <img className="backg" src="images/pizza1.png"/>
           <img
             className="w-100"
-            src={pizza}
+            src="images/pizza1.png"
             alt="Pizza"
           />
           <Carousel.Caption>
@@ -33,10 +31,10 @@ function FirstCarousel() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item >
-          <img className="backg" src={fries}/>
+          <img className="backg" src="images/fries.jpg"/>
           <img
             className="w-100"
-            src={fries}
+            src="images/fries.jpg"
             alt="Cheesy fries"
           />
   

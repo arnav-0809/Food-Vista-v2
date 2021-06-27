@@ -84,6 +84,7 @@ return(
         {burger.slice(0,3).map((item)=>(
             <CardLay
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
@@ -97,6 +98,7 @@ return(
     {burger.slice(3,6).map((item)=>(
             <CardLay
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
@@ -110,6 +112,7 @@ return(
     {burger.slice(6,9).map((item)=>(
             <CardLay
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
