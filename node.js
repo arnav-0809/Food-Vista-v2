@@ -17,9 +17,8 @@ mongoose.connect("mongodb+srv://admin-arnav:Test123@cluster0.148tt.mongodb.net/f
 let foodItems=[];
 
 const foodSchema=new mongoose.Schema({
-    id:Number,
     item:Array,
-    count:Number
+    price:Number
   });
   
 const Food=mongoose.model("Food",foodSchema);
@@ -27,20 +26,20 @@ const Food=mongoose.model("Food",foodSchema);
 
 app.post("/",function (req, res) {
     
-    // const food=new Food({
-    //   id:req.body.id,
-    //   item:req.body.item,
-    //   count:req.body.count
-    // });
+    const food=new Food({
+      item:req.body.item,
+      price:req.body.price
+    });
 
-     Food.findOneAndUpdate({id:req.body.id},{id:req.body.id,item:req.body.item,count:req.body.count},{new:true,upsert:true},function(err){
-      if(err){
-        console.log(err);
-      }
-      else{
-        console.log("successfully updated");
-      }
-      });
+    food.save();
+    //  Food.findOneAndUpdate({id:req.body.id},{id:req.body.id,item:req.body.item,count:req.body.count},{new:true,upsert:true},function(err){
+    //   if(err){
+    //     console.log(err);
+    //   }
+    //   else{
+    //     console.log("successfully updated");
+    //   }
+    //   });
 
       // Food.findOne({id:req.body.id},function(err,foundFood){
       //   if(err){

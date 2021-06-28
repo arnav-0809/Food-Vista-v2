@@ -7,28 +7,34 @@ var[total,setValue]=useState(0);
 var[items,setItems]=useState([]);
 
 
-async function increase(){
+function increase(){
     setValue(prev=>{
         props.cart(props.name,props.price,prev+1);
         return prev+1;
     })
      
 
-    const tot=JSON.stringify({
-        id:props.id,
-        item:props.name,
-        count:total+1
-    });
-    const {data}= await axios.post("http://localhost:8080",tot,{
-        headers: {'Content-Type': 'application/json' }
-    });
+    // const tot=JSON.stringify({
+    //     id:props.id,
+    //     item:props.name,
+    //     count:total+1
+    // });
+
+    // const {data}= await axios.post("http://localhost:8080",tot,{
+    //     headers: {'Content-Type': 'application/json' }
+    // });
+
+    
 
 }
-
 
 const fetchItems= async ()=>{
     const{data}=await axios.get("http://localhost:8080")
     setItems(data);
+    const item1=items.map((i)=>
+          i.item
+        );
+    console.log(item1);
 };
 
 useEffect(()=>{

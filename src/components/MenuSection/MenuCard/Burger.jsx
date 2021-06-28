@@ -1,27 +1,31 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import burger from "../menudetails/Burger";
+import axios from "axios";
 
-
-function burgerOrder(...items){
-    var itemDets=items;
-    // console.log(itemDets);
-    return itemDets;
-}
-
-function burgerPrice(price)
-{
-    var price=price;
-    // console.log(price);
-    return price;
-}
 
 
 function Menu(){
 
 var[items,setItems]=useState([]);
 var[totalPrice,setTotalPrice]=useState(0);
+var[databaseOrder,setDatabaseOrder]=useState([]);
+
+  
+  const body=JSON.stringify({
+    item:items,
+    price:totalPrice
+  });
+
+
+  const postItems= async()=>{
+     const request=await axios.post("http://localhost:8080",body,{
+    headers: {'Content-Type': 'application/json' }
+  });
+
+ }
+
 
 function cart(item,price,count){ 
     var hello=0;
@@ -69,8 +73,6 @@ function cart(item,price,count){
     }
 }
 
-burgerOrder(...items);
-burgerPrice(totalPrice);
 // console.log(items,totalPrice);
 
 
@@ -120,9 +122,13 @@ return(
                 cart={cart}
             />))}
     </Row>
+
+{/* 4th row */}
+    <Row className="justify-content-center">
+          <button onClick={postItems}>Add to cart</button>
+    </Row>
 </Container>
     );
 }
 
 export default Menu;
-export {burgerOrder,burgerPrice};

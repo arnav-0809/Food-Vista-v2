@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
-import {burgerOrder,burgerPrice} from "../MenuSection/MenuCard/Burger"
 import {Container,Row,Col} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
@@ -16,11 +15,35 @@ function Cart(props) {
 
   var[order,setOrder]=useState(JSON.parse(localStorage.getItem('ITEM')));
   var[price,setPrice]=useState(JSON.parse(localStorage.getItem('PRICE')));
-  const[databaseOrder,setDatabaseOrder]=useState([]);
+  var[databaseOrder,setDatabaseOrder]=useState([]);
   
 
-  localStorage.removeItem('ITEM');
-  localStorage.removeItem('PRICE');
+  // localStorage.removeItem('ITEM');
+  // localStorage.removeItem('PRICE');
+
+
+//   const body=JSON.stringify({
+//     item:order,
+//     price:price
+//   });
+
+//   const postItems= async()=>{
+//     if(order!==null)
+//    {
+//      const request=await axios.post("http://localhost:8080",body,{
+//     headers: {'Content-Type': 'application/json' }
+//   });
+//    }
+//  }
+
+  const fetchItems= async ()=>{
+    const {data}=await axios.get("http://localhost:8080")
+    setDatabaseOrder(data);
+  };
+
+  useEffect(()=>{
+      fetchItems()
+  },[]);
 
   // async function postData(){
   //    if(order!==null)
@@ -55,14 +78,6 @@ function Cart(props) {
   //   .then(res=>setDatabaseOrder(res))
   // },[]);
 
-  const fetchItems= async ()=>{
-    const{data}=await axios.get("http://localhost:8080")
-    setDatabaseOrder(data);
-  };
-
-  useEffect(()=>{
-    fetchItems();
-  },[]);
 
   return (
     <Container>
@@ -71,14 +86,12 @@ function Cart(props) {
       </Row>
       <Row className="justify-content-center">{databaseOrder.map((i)=>
       <div className="cart">
-       <h1>{i.item}</h1>
-      </div>
-       ,{/* <div className="cart">
-        {i.item && i.item.map((j)=><div className="cart">
-         <h1>{j.item}</h1>
-         <p>{j.count}</p></div>)}
-         <p>{i.price}</p>
-        </div> */}
+          {i.item.map((j)=><div className="cart">
+          <h1>{j.item}</h1>
+          <p>{j.count}</p>
+          </div>
+        )}
+        </div>
         )}
       </Row>
       <Row className="justify-content-center">
@@ -96,3 +109,9 @@ function Cart(props) {
 }
 
 export default Cart;
+
+
+{/* <div className="cart">
+        {i.item && <h1>{i.item}</h1>}
+        {i.item &&<p>{i.price}</p>}
+        </div> */}
