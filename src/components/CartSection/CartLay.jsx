@@ -6,35 +6,25 @@ import axios from "axios";
 
 function Cart(props) {
 
-  // function handleClick(){
-  //   props.onDelete(props.id);
-  // }
+  
   const style={
-    color:"white",
+    display:"inline-block",
+    marginRight:"20px"
   }
 
-  var[order,setOrder]=useState(JSON.parse(localStorage.getItem('ITEM')));
+  const stylePrice={
+    display:"inline-block",
+    fontWeight:"bold",
+    color:"rgb(138, 137, 137)"
+  }
+
   var[price,setPrice]=useState(JSON.parse(localStorage.getItem('PRICE')));
   var[databaseOrder,setDatabaseOrder]=useState([]);
   
-
-  // localStorage.removeItem('ITEM');
-  // localStorage.removeItem('PRICE');
-
-
-//   const body=JSON.stringify({
-//     item:order,
-//     price:price
-//   });
-
-//   const postItems= async()=>{
-//     if(order!==null)
-//    {
-//      const request=await axios.post("http://localhost:8080",body,{
-//     headers: {'Content-Type': 'application/json' }
-//   });
-//    }
-//  }
+  // async function handleClick(id){
+  //   const res=await axios.delete("http://localhost:8080/delete/"+id)
+  //   fetchItems();
+  // }
 
   const fetchItems= async ()=>{
     const {data}=await axios.get("http://localhost:8080")
@@ -45,38 +35,7 @@ function Cart(props) {
       fetchItems()
   },[]);
 
-  // async function postData(){
-  //    if(order!==null)
-  //    {
-  //      const request= await fetch("http://localhost:8080",{
-  //        method:'POST',
-  //        body:JSON.stringify({
-  //          item:order,
-  //          price:price
-  //        }),
-  //        headers:{"Content-Type":"application/json"}
-  //    })
-  //    .then(function(request){
-  //        return request.json()
-  //      })
-  //    .then(function(body){
-  //        console.log(body);
-  //      });
-  //  }
-  // }
-  // useEffect(()=>{postData()},[]); 
-
-  // async function getData(){
-  //   const response= await fetch("http://localhost:8080");
-  //   const data=await response.json();
-    
-  //   // console.log(data);
-  //   return data;
-  // }
-  // useEffect(()=>{
-  //   getData()
-  //   .then(res=>setDatabaseOrder(res))
-  // },[]);
+  
 
 
   return (
@@ -86,23 +45,27 @@ function Cart(props) {
       </Row>
       <Row className="justify-content-center">{databaseOrder.map((i)=>
       <div className="cart">
-          {i.item.map((j)=><div className="cart">
+          {i.item.map((j)=><div>
           <h1>{j.item}</h1>
           <p>{j.count}</p>
+          {/* <button onClick={()=>handleClick(i.id)}><DeleteIcon/></button> */}
           </div>
         )}
         </div>
         )}
       </Row>
       <Row className="justify-content-center">
-        <p style={style}>{price}</p>
+        <div className="cart">
+          <h1 style={style}>Total Price   :</h1>
+          <h1 style={stylePrice}>{price}</h1>
+        </div>
       </Row>
     </Container>
     // wow.map((item)=>
     // <div className="review">
     //   <h1>{item.item}</h1>
     //   <p>{item.count}</p>
-    //   <button onClick={handleClick}><DeleteIcon/></button>
+    //   
     // </div>
     // )
   );
@@ -110,8 +73,3 @@ function Cart(props) {
 
 export default Cart;
 
-
-{/* <div className="cart">
-        {i.item && <h1>{i.item}</h1>}
-        {i.item &&<p>{i.price}</p>}
-        </div> */}

@@ -18,25 +18,6 @@ import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 function App(){
 
-    // async function postData(){
-    //     const response= await fetch("http://localhost:8080",{
-    //         method:'POST',
-    //         body:JSON.stringify({
-    //             item:burgerOrder(),
-    //             price:burgerPrice(),
-    //         }),
-    //         headers:{"Content-Type":"application/json"}
-    //     })
-    //     .then(function(response){
-    //         return response.json()
-    //       })
-    //     .then(function(body){
-    //         console.log(body);
-    //       });
-    // }
-
-    // useEffect(()=>{postData()},[]);
-
     return (
         <Router>
         <div>

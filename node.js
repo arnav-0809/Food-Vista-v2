@@ -8,7 +8,6 @@ app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept');
-
     next();
 });
 
@@ -17,6 +16,7 @@ mongoose.connect("mongodb+srv://admin-arnav:Test123@cluster0.148tt.mongodb.net/f
 let foodItems=[];
 
 const foodSchema=new mongoose.Schema({
+    id:Number,
     item:Array,
     price:Number
   });
@@ -26,13 +26,23 @@ const Food=mongoose.model("Food",foodSchema);
 
 app.post("/",function (req, res) {
     
+    Food.deleteOne({id:req.body.id},function(err){
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log("deleted successfully");
+      }
+    })
+
     const food=new Food({
+      id:req.body.id,
       item:req.body.item,
       price:req.body.price
     });
-
     food.save();
-    //  Food.findOneAndUpdate({id:req.body.id},{id:req.body.id,item:req.body.item,count:req.body.count},{new:true,upsert:true},function(err){
+
+    //  Food.findOneAndUpdate({item:req.body.item},{count:req.body.count},function(err){
     //   if(err){
     //     console.log(err);
     //   }
@@ -41,7 +51,7 @@ app.post("/",function (req, res) {
     //   }
     //   });
 
-      // Food.findOne({id:req.body.id},function(err,foundFood){
+      // Food.findOne({item:req.body.item},function(err,foundFood){
       //   if(err){
       //     console.log(err);
       //   }
@@ -53,6 +63,15 @@ app.post("/",function (req, res) {
       // })
 
 })
+
+// app.post("/delete/req.body.id",function(req,res){
+//   Food.deleteOne({id:req.body.id},function(err){
+//     if(err){
+//       console.log(err);
+//     }
+//   })
+//   res.redirect("/");
+// })
 
 app.get("/",function(req,res){
   

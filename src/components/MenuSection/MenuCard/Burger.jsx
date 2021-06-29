@@ -11,9 +11,11 @@ function Menu(){
 var[items,setItems]=useState([]);
 var[totalPrice,setTotalPrice]=useState(0);
 var[databaseOrder,setDatabaseOrder]=useState([]);
-
   
+
+//posting data to database
   const body=JSON.stringify({
+    id:1,
     item:items,
     price:totalPrice
   });
@@ -23,16 +25,15 @@ var[databaseOrder,setDatabaseOrder]=useState([]);
      const request=await axios.post("http://localhost:8080",body,{
     headers: {'Content-Type': 'application/json' }
   });
-
  }
 
-
+//Cart fuctioning and adding items and price to local storage
 function cart(item,price,count){ 
     var hello=0;
     if(items.length===0)
     {
-        setItems([...items,{item,count}]);
-        localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
+            setItems([...items,{item,count}]);
+            localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
     }
     
     for(let i=0;i<items.length;i++)
@@ -61,11 +62,14 @@ function cart(item,price,count){
             items.splice(i,1);
         }
         localStorage.setItem('ITEM',JSON.stringify([...items]));
+
     }
     if(hello===0)
     {
+
         setItems([...items,{item,count}]);
         localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
+
         setTotalPrice(prev=>{
             localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
             return parseInt(prev)+parseInt(price);
@@ -75,7 +79,39 @@ function cart(item,price,count){
 
 // console.log(items,totalPrice);
 
+//updating the local storage on refreshing by retrieving data from database
+const fetchData= async ()=>{
+    const{data}=await axios.get("http://localhost:8080")
+    setDatabaseOrder(data);
+ 
+};
 
+const item2=()=>{databaseOrder && databaseOrder.map((i)=>{
+    i.item.map((j)=>{
+        console.log(j);
+         setItems(prev=>{
+            localStorage.setItem('ITEM',JSON.stringify([...prev,j])); 
+            return [...prev,j]
+        });
+      });
+    setTotalPrice(prev=>{
+            localStorage.setItem('PRICE',JSON.stringify(prev+i.price));
+            return prev+i.price;
+        })
+    })
+};
+
+useEffect(()=>{
+    fetchData();
+},[]);
+
+
+useEffect(()=>{
+item2();
+},[databaseOrder]);
+
+
+//rendering the page 
 return(
 <Container>
     <Row className="justify-content-center">

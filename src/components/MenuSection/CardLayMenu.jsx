@@ -6,40 +6,45 @@ function CardLay(props){
 var[total,setValue]=useState(0);
 var[items,setItems]=useState([]);
 
-
 function increase(){
     setValue(prev=>{
         props.cart(props.name,props.price,prev+1);
         return prev+1;
-    })
-     
-
-    // const tot=JSON.stringify({
-    //     id:props.id,
-    //     item:props.name,
-    //     count:total+1
-    // });
-
-    // const {data}= await axios.post("http://localhost:8080",tot,{
-    //     headers: {'Content-Type': 'application/json' }
-    // });
-
-    
-
+    })    
 }
 
+//updating the count of the food items by retrieving data from database
 const fetchItems= async ()=>{
     const{data}=await axios.get("http://localhost:8080")
     setItems(data);
-    const item1=items.map((i)=>
-          i.item
-        );
-    console.log(item1);
 };
+
+const item4=()=>{items.map((i)=>
+          i.item.map((j)=>{
+            //    console.log(j);
+              if(j.count!==null && props.name===j.item)
+              {
+                  setValue(prev=>{
+                      return (prev+j.count);
+                    })
+                    return total;
+              }else
+              {
+                  return total;
+              }
+            })
+        )};
+
+
 
 useEffect(()=>{
     fetchItems();
 },[]);
+
+useEffect(()=>{
+    item4();
+},[items]);
+
 
 function decrease(){
     if(total>0)
@@ -49,6 +54,7 @@ function decrease(){
     })
 }
 
+//rendering the page
 return(
 <Col xs={7} sm={7} md={4} lg={3} className="contain">
 <Card bg="dark" className="items">
