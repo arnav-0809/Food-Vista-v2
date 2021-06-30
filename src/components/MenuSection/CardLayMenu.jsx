@@ -8,7 +8,7 @@ var[items,setItems]=useState([]);
 
 function increase(){
     setValue(prev=>{
-        props.cart(props.name,props.price,prev+1);
+        props.cart(props.id,props.name,props.price,prev+1);
         return prev+1;
     })    
 }
@@ -49,7 +49,7 @@ useEffect(()=>{
 function decrease(){
     if(total>0)
     setValue(prev=>{
-        props.cart(props.name,props.price,prev-1);
+        props.cart(props.id,props.name,props.price,prev-1);
         return prev-1;
     })
 }

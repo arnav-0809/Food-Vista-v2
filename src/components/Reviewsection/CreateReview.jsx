@@ -51,7 +51,7 @@ function CreateArea(props) {
   return (
     <div>
       <form className="create-review">
-        {isExpanded && <input name="title" autocomplete="off" onChange={addItem} value={newReview.title} placeholder="Title" autoFocus/>}
+        {isExpanded && <input name="title" autoComplete="off" onChange={addItem} value={newReview.title} placeholder="Title" autoFocus/>}
         <textarea name="content" onClick={expand} onChange={addItem} value={newReview.content} placeholder="Write us a review..." rows={isExpanded?3:1} />
         <Zoom in={isExpanded}><Fab ref={target} onClick={submit}><AddIcon/></Fab></Zoom>
         {show && <Overlay target={target.current} show={show} placement="left">

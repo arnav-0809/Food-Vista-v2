@@ -34,6 +34,8 @@ app.post("/",function (req, res) {
         console.log("deleted successfully");
       }
     })
+    
+    
 
     const food=new Food({
       id:req.body.id,
@@ -42,47 +44,43 @@ app.post("/",function (req, res) {
     });
     food.save();
 
-    //  Food.findOneAndUpdate({item:req.body.item},{count:req.body.count},function(err){
-    //   if(err){
-    //     console.log(err);
-    //   }
-    //   else{
-    //     console.log("successfully updated");
-    //   }
-    //   });
-
-      // Food.findOne({item:req.body.item},function(err,foundFood){
-      //   if(err){
-      //     console.log(err);
-      //   }
-      //   if(!foundFood)
-      //   {
-      //     food.save();
-      //     console.log("saved");
-      //   }
-      // })
 
 })
 
-// app.post("/delete/req.body.id",function(req,res){
-//   Food.deleteOne({id:req.body.id},function(err){
-//     if(err){
-//       console.log(err);
-//     }
-//   })
-//   res.redirect("/");
-// })
+app.get("/delete/:ID",function(req,res){
+  const itemid=req.params.ID;
+  Food.findOneAndUpdate({}, { $pull: { item: { itemId:parseInt(itemid)} } },{multi:true,new:true}, function(err){
+  if(err)
+  {
+    console.log(err);
+  }
+});
+
+  res.redirect("/");
+})
+
 
 app.get("/",function(req,res){
-  
+
      Food.find({},function(err,foundFood){
          var arr=[];
          foundFood.forEach(function(food){
            arr.push(food);
+           if(food.item.length===0)
+           {
+            Food.deleteOne({id:food.id},function(err){
+              if(err){
+                console.log(err);
+              }
+              else{
+                console.log("deleted");
+              }
+            })
+           }
          });
          foodItems=arr;
          res.json(foodItems);
-})
+});
 })
 
 

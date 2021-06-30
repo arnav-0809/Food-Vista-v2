@@ -28,12 +28,12 @@ var[databaseOrder,setDatabaseOrder]=useState([]);
  }
 
 //Cart fuctioning and adding items and price to local storage
-function cart(item,price,count){ 
+function cart(itemId,item,price,count){ 
     var hello=0;
     if(items.length===0)
     {
-            setItems([...items,{item,count}]);
-            localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
+            setItems([...items,{itemId,item,count}]);
+            localStorage.setItem('ITEM',JSON.stringify([...items,{itemId,item,count}]));
     }
     
     for(let i=0;i<items.length;i++)
@@ -67,8 +67,8 @@ function cart(item,price,count){
     if(hello===0)
     {
 
-        setItems([...items,{item,count}]);
-        localStorage.setItem('ITEM',JSON.stringify([...items,{item,count}]));
+        setItems([...items,{itemId,item,count}]);
+        localStorage.setItem('ITEM',JSON.stringify([...items,{itemId,item,count}]));
 
         setTotalPrice(prev=>{
             localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
@@ -88,7 +88,7 @@ const fetchData= async ()=>{
 
 const item2=()=>{databaseOrder && databaseOrder.map((i)=>{
     i.item.map((j)=>{
-        console.log(j);
+        // console.log(j);
          setItems(prev=>{
             localStorage.setItem('ITEM',JSON.stringify([...prev,j])); 
             return [...prev,j]
