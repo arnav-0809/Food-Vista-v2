@@ -49,11 +49,25 @@ app.post("/",function (req, res) {
 
 app.get("/delete/:ID",function(req,res){
   const itemid=req.params.ID;
-  Food.findOneAndUpdate({}, { $pull: { item: { itemId:parseInt(itemid)} } },{multi:true,new:true}, function(err){
+  var priceCut=0;
+  Food.findOneAndUpdate({}, { $pull: { item: { itemId:parseInt(itemid)} } },{multi:true,new:true}, function(err,foundFood){
   if(err)
   {
     console.log(err);
-  }
+  }else{
+   //changing the price in database
+   foundFood.item.map((i)=>{
+       priceCut+=parseInt(i.count)*parseInt(i.price);
+      }
+    );
+
+    if(parseInt(itemid)<10){
+    Food.updateOne({id:1},{price:priceCut},function(err){
+      if(err){
+        console.log(err);
+      }
+    });
+  }}
 });
 
   res.redirect("/");

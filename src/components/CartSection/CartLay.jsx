@@ -17,7 +17,7 @@ function Cart() {
     color:"rgb(138, 137, 137)"
   }
 
-  var[price,setPrice]=useState(JSON.parse(localStorage.getItem('PRICE')));
+  var[price,setPrice]=useState();
   var[databaseOrder,setDatabaseOrder]=useState([]);
 
   if(databaseOrder.length===0){
@@ -48,24 +48,26 @@ function Cart() {
   return (
     <Container>
       <Row className="justify-content-center">
-        <Col xs={12} sm={9} md={11} lg={8} className="menuHead">Order Details</Col>
+        <Col xs={11} sm={9} md={11} lg={8} className="menuHead">Order Details</Col>
       </Row>
       <Row className="justify-content-center">{databaseOrder.map((i)=>
       <div className="cart">
-          {i.item.map((j)=><div>
-          <h1>{j.item}</h1>
-          <p>{j.count}</p>
-          <button onClick={()=>handleClick(j.itemId)}><DeleteIcon/></button>
+          {i.item.map((j)=><div className="cartIn">
+          <h1>Item Name : <p style={stylePrice}>{j.item}</p></h1>
+          <h1>Item Count : <p style={stylePrice}>{j.count}</p></h1>
+          <button className="cartButton" onClick={()=>handleClick(j.itemId)}><DeleteIcon/></button>
+          <h1>Item Price : <p style={stylePrice}>Rs.{parseInt(j.price)*parseInt(j.count)}</p></h1>
           </div>
         )}
         </div>
         )}
       </Row>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center">{databaseOrder.map((i)=>
         <div className="cart">
           <h1 style={style}>Total Price   :</h1>
-          <h1 style={stylePrice}>{price?price:0}</h1>
+          <h1 style={stylePrice}>{i.price?i.price:0}</h1>
         </div>
+        )}
       </Row>
     </Container>
   );

@@ -32,8 +32,8 @@ function cart(itemId,item,price,count){
     var hello=0;
     if(items.length===0)
     {
-            setItems([...items,{itemId,item,count}]);
-            localStorage.setItem('ITEM',JSON.stringify([...items,{itemId,item,count}]));
+            setItems([...items,{itemId,item,count,price}]);
+            localStorage.setItem('ITEM',JSON.stringify([...items,{itemId,item,count,price}]));
     }
     
     for(let i=0;i<items.length;i++)
@@ -67,8 +67,8 @@ function cart(itemId,item,price,count){
     if(hello===0)
     {
 
-        setItems([...items,{itemId,item,count}]);
-        localStorage.setItem('ITEM',JSON.stringify([...items,{itemId,item,count}]));
+        setItems([...items,{itemId,item,count,price}]);
+        localStorage.setItem('ITEM',JSON.stringify([...items,{itemId,item,count,price}]));
 
         setTotalPrice(prev=>{
             localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
@@ -161,7 +161,7 @@ return(
 
 {/* 4th row */}
     <Row className="justify-content-center">
-          <button onClick={postItems}>Add to cart</button>
+          <button className="addToCart" onClick={postItems}>Add to Cart</button>
     </Row>
 </Container>
     );

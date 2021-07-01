@@ -291,6 +291,21 @@ form.create-review button {
     font-size: 18px;
 }
 
+.addToCart{
+    background: #343a40 ;
+    color:rgb(240, 94, 94) ;
+    text-decoration: none;
+    border:4px solid rgb(138, 137, 137);
+    height:60px;
+    width:180px;
+    font-size: 25px;
+    word-spacing: -7px;
+    border-radius: 5px;
+    font-weight:bold;
+    margin:60px 0px;
+    font-family: 'Roboto Mono', monospace;
+}
+
 
 /*--------------------------------------Menu Section for different type of food items ends------------------------------*/
 
@@ -305,6 +320,17 @@ form.create-review button {
     padding: 10px;
     width: 70%;
     margin: 16px;
+    float: left;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.cartIn{
+    background: #343a40;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px rgb(138, 137, 137);
+    padding: 10px;
+    width: 100%;
+    margin:16px -5px 16px 0px;
     float: left;
     font-family: 'Roboto Mono', monospace;
 }
@@ -323,13 +349,18 @@ form.create-review button {
   color:rgb(138, 137, 137);
 }
 
-
-
-
-
-
-
-
-
+.cartButton {
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    margin-top:20px;
+    color: rgb(138, 137, 137);
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    outline: none;
+    background:#343a40;
+}
 
 /*-----------------------------------------------------Cart section ends------------------------------------------------*/
