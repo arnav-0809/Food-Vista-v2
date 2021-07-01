@@ -5,7 +5,6 @@ import burger from "../menudetails/Burger";
 import axios from "axios";
 
 
-
 function Menu(){
 
 var[items,setItems]=useState([]);
@@ -33,7 +32,7 @@ function cart(itemId,item,price,count){
     if(items.length===0)
     {
             setItems([...items,{itemId,item,count,price}]);
-            localStorage.setItem('ITEM',JSON.stringify([...items,{itemId,item,count,price}]));
+            localStorage.setItem('BURGERITEM',JSON.stringify([...items,{itemId,item,count,price}]));
     }
     
     for(let i=0;i<items.length;i++)
@@ -46,11 +45,11 @@ function cart(itemId,item,price,count){
             setTotalPrice(prev=>{
                 if(count>counter)
                 {
-                    localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
+                    localStorage.setItem('BURGERPRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
                     return parseInt(prev)+parseInt(price);
                 }
                 else{
-                    localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)-parseInt(price)));
+                    localStorage.setItem('BURGERPRICE',JSON.stringify(parseInt(prev)-parseInt(price)));
                     return parseInt(prev)-parseInt(price);
                 }
             })
@@ -61,17 +60,17 @@ function cart(itemId,item,price,count){
         {
             items.splice(i,1);
         }
-        localStorage.setItem('ITEM',JSON.stringify([...items]));
+        localStorage.setItem('BURGERITEM',JSON.stringify([...items]));
 
     }
     if(hello===0)
     {
 
         setItems([...items,{itemId,item,count,price}]);
-        localStorage.setItem('ITEM',JSON.stringify([...items,{itemId,item,count,price}]));
+        localStorage.setItem('BURGERITEM',JSON.stringify([...items,{itemId,item,count,price}]));
 
         setTotalPrice(prev=>{
-            localStorage.setItem('PRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
+            localStorage.setItem('BURGERPRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
             return parseInt(prev)+parseInt(price);
         })
     }
@@ -87,18 +86,19 @@ const fetchData= async ()=>{
 };
 
 const item2=()=>{databaseOrder && databaseOrder.map((i)=>{
+    if(parseInt(i.id)===1){
     i.item.map((j)=>{
         // console.log(j);
          setItems(prev=>{
-            localStorage.setItem('ITEM',JSON.stringify([...prev,j])); 
+            localStorage.setItem('BURGERITEM',JSON.stringify([...prev,j])); 
             return [...prev,j]
         });
       });
     setTotalPrice(prev=>{
-            localStorage.setItem('PRICE',JSON.stringify(prev+i.price));
+            localStorage.setItem('BURGERPRICE',JSON.stringify(prev+i.price));
             return prev+i.price;
         })
-    })
+   } })
 };
 
 useEffect(()=>{

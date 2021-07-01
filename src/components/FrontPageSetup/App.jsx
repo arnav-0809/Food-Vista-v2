@@ -13,7 +13,6 @@ import Pizza from "../MenuSection/MenuCard/Pizza"
 import Shakes from "../MenuSection/MenuCard/Shakes"
 import Waffle from "../MenuSection/MenuCard/Waffle"
 import Cart from "../CartSection/CartLay"
-import {burgerOrder,burgerPrice} from "../MenuSection/MenuCard/Burger"
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 function App(){

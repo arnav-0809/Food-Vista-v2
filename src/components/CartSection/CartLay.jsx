@@ -17,21 +17,37 @@ function Cart() {
     color:"rgb(138, 137, 137)"
   }
 
-  var[price,setPrice]=useState();
+  var price=0;
+  var key=0;
   var[databaseOrder,setDatabaseOrder]=useState([]);
 
-  if(databaseOrder.length===0){
-    localStorage.removeItem('ITEM');
-    localStorage.removeItem('PRICE');
-  }
+  
+  let keysToRemove=['BURGERITEM','PIZZAITEM','WAFFLEITEM','FRIESITEM','MOMOSITEM','SHAKESITEM','PASTRYITEM','PASTAITEM','ICECREAMITEM','BURGERPRICE','PIZZAPRICE','WAFFLEPRICE','FRIESPRICE','MOMOSPRICE','SHAKESPRICE','PASTRYPRICE','PASTAPRICE','ICECREAMPRICE']
+  keysToRemove.forEach(k =>
+  localStorage.removeItem(k))
+  
   
   //deleting an item
-  async function handleClick(itemId){
+  async function handleClick(itemId,id){
     const res=await axios.get(`http://localhost:8080/delete/${itemId}`)
     .then(
-      fetchItems()
-    );
+      fetchItems(),
+      window.location.reload(false),
+      // reactDeletion(itemId)
+      );
   }
+
+  // function reactDeletion(itemId){
+  //   setDatabaseOrder(prevItems=>{
+  //     return prevItems.filter((reviewItem)=>{
+  //       reviewItem.item.map((i)=>{
+  //       console.log(itemId,i.itemId)
+  //       console.log(itemId===i.itemId)
+  //       return i.itemId!==itemId
+  //   })
+  //   });
+  // })
+  // }
 
   const fetchItems= async ()=>{
     const {data}=await axios.get("http://localhost:8080")
@@ -50,24 +66,26 @@ function Cart() {
       <Row className="justify-content-center">
         <Col xs={11} sm={9} md={11} lg={8} className="menuHead">Order Details</Col>
       </Row>
-      <Row className="justify-content-center">{databaseOrder.map((i)=>
+      <Row className="justify-content-center">{databaseOrder && databaseOrder.map((i)=>
       <div className="cart">
-          {i.item.map((j)=><div className="cartIn">
+          {i.item.map((j,index)=><div className="cartIn">
           <h1>Item Name : <p style={stylePrice}>{j.item}</p></h1>
           <h1>Item Count : <p style={stylePrice}>{j.count}</p></h1>
-          <button className="cartButton" onClick={()=>handleClick(j.itemId)}><DeleteIcon/></button>
+          <button className="cartButton" onClick={()=>handleClick(j.itemId,index)}><DeleteIcon/></button>
           <h1>Item Price : <p style={stylePrice}>Rs.{parseInt(j.price)*parseInt(j.count)}</p></h1>
           </div>
         )}
         </div>
         )}
       </Row>
-      <Row className="justify-content-center">{databaseOrder.map((i)=>
+      <Row className="justify-content-center">
         <div className="cart">
           <h1 style={style}>Total Price   :</h1>
-          <h1 style={stylePrice}>{i.price?i.price:0}</h1>
+          {databaseOrder && databaseOrder.map((i)=>
+            {price+=i.price}
+          )}
+          <h1 style={stylePrice}>{price}</h1>
         </div>
-        )}
       </Row>
     </Container>
   );

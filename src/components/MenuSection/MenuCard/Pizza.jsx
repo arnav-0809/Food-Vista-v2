@@ -1,31 +1,37 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import pizza from "../menudetails/Pizza";
-
-function pizzaOrder(...items){
-    var itemDets=items;
-    console.log(itemDets);
-    return itemDets;
-}
-
-function pizzaPrice(price)
-{
-    var price=price;
-    console.log(price);
-    return price;
-}
+import axios from "axios";
 
 function Menu(){
 
 var[items,setItems]=useState([]);
 var[totalPrice,setTotalPrice]=useState(0);
+var[databaseOrder,setDatabaseOrder]=useState([]);
+  
 
-function cart(item,price,count){ 
+//posting data to database
+  const body=JSON.stringify({
+    id:2,
+    item:items,
+    price:totalPrice
+  });
+
+
+  const postItems= async()=>{
+     const request=await axios.post("http://localhost:8080",body,{
+    headers: {'Content-Type': 'application/json' }
+  });
+ }
+
+//Cart fuctioning and adding items and price to local storage
+function cart(itemId,item,price,count){ 
     var hello=0;
     if(items.length===0)
     {
-        setItems([...items,{item,count}]);
+            setItems([...items,{itemId,item,count,price}]);
+            localStorage.setItem('PIZZAITEM',JSON.stringify([...items,{itemId,item,count,price}]));
     }
     
     for(let i=0;i<items.length;i++)
@@ -37,29 +43,73 @@ function cart(item,price,count){
             items[i].count=count;
             setTotalPrice(prev=>{
                 if(count>counter)
-                return parseInt(prev)+parseInt(price);
-                else
-                return parseInt(prev)-parseInt(price);
+                {
+                    localStorage.setItem('PIZZAPRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
+                    return parseInt(prev)+parseInt(price);
+                }
+                else{
+                    localStorage.setItem('PIZZAPRICE',JSON.stringify(parseInt(prev)-parseInt(price)));
+                    return parseInt(prev)-parseInt(price);
+                }
             })
+            
             hello=1;
         }
         if(items[i].count===0)
         {
             items.splice(i,1);
         }
+        localStorage.setItem('PIZZAITEM',JSON.stringify([...items]));
+
     }
     if(hello===0)
     {
-        setItems([...items,{item,count}]);
+
+        setItems([...items,{itemId,item,count,price}]);
+        localStorage.setItem('PIZZAITEM',JSON.stringify([...items,{itemId,item,count,price}]));
+
         setTotalPrice(prev=>{
+            localStorage.setItem('PIZZAPRICE',JSON.stringify(parseInt(prev)+parseInt(price)));
             return parseInt(prev)+parseInt(price);
         })
     }
-    
 }
 
-console.log(items,totalPrice); 
+// console.log(items,totalPrice);
 
+//updating the local storage on refreshing by retrieving data from database
+const fetchData= async ()=>{
+    const{data}=await axios.get("http://localhost:8080")
+    setDatabaseOrder(data);
+ 
+};
+
+const item2=()=>{databaseOrder && databaseOrder.map((i)=>{
+    if(parseInt(i.id)===2){
+    i.item.map((j)=>{
+        // console.log(j);
+         setItems(prev=>{
+            localStorage.setItem('PIZZAITEM',JSON.stringify([...prev,j])); 
+            return [...prev,j]
+        });
+      });
+    setTotalPrice(prev=>{
+            localStorage.setItem('PIZZAPRICE',JSON.stringify(prev+i.price));
+            return prev+i.price;
+        })
+}})
+};
+
+useEffect(()=>{
+    fetchData();
+},[]);
+
+
+useEffect(()=>{
+item2();
+},[databaseOrder]); 
+
+//rendering the page
 return(
 <Container>
     <Row className="justify-content-center">
@@ -70,6 +120,7 @@ return(
         {pizza.slice(0,3).map((item)=>(
             <CardLay
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
@@ -83,6 +134,7 @@ return(
     {pizza.slice(3,6).map((item)=>(
             <CardLay
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
@@ -96,6 +148,7 @@ return(
     {pizza.slice(6,9).map((item)=>(
             <CardLay
                 key={item.id}
+                id={item.id}
                 name={item.name}
                 img={item.imgURL}
                 alt={item.alt}
@@ -103,6 +156,11 @@ return(
                 cart={cart}
             />))}
     </Row>
+
+{/* 4th row */}
+    <Row className="justify-content-center">
+          <button className="addToCart" onClick={postItems}>Add to Cart</button>
+    </Row>    
 </Container>
     );
 }

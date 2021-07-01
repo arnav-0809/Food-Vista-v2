@@ -18,7 +18,8 @@ let foodItems=[];
 const foodSchema=new mongoose.Schema({
     id:Number,
     item:Array,
-    price:Number
+    price:Number,
+    totalPrice:Number
   });
   
 const Food=mongoose.model("Food",foodSchema);
@@ -36,7 +37,6 @@ app.post("/",function (req, res) {
     })
     
     
-
     const food=new Food({
       id:req.body.id,
       item:req.body.item,
@@ -50,7 +50,43 @@ app.post("/",function (req, res) {
 app.get("/delete/:ID",function(req,res){
   const itemid=req.params.ID;
   var priceCut=0;
-  Food.findOneAndUpdate({}, { $pull: { item: { itemId:parseInt(itemid)} } },{multi:true,new:true}, function(err,foundFood){
+  var shopid=1;
+  //finding shopid
+  switch(Math.floor(itemid/10)){
+    case 0:
+      shopid=1;
+      break;
+    case 1:
+      shopid=2;
+      break;
+    case 2:
+      shopid=3;
+      break;
+    case 3:
+      shopid=4;
+      break;
+    case 4:
+      shopid=5;
+      break;
+    case 5:
+      shopid=6;
+      break;
+    case 6:
+      shopid=7;
+      break;
+    case 7:
+      shopid=8;
+      break;
+    case 8:
+      shopid=9;
+      break;
+    default:
+      shopid=1;
+      break;   
+  }
+
+  //removing an item when the delete icon is clicked
+  Food.findOneAndUpdate({id:parseInt(shopid)}, { $pull: { item: { itemId:parseInt(itemid)} } },{multi:true,new:true}, function(err,foundFood){
   if(err)
   {
     console.log(err);
@@ -61,13 +97,12 @@ app.get("/delete/:ID",function(req,res){
       }
     );
 
-    if(parseInt(itemid)<10){
-    Food.updateOne({id:1},{price:priceCut},function(err){
+    Food.updateOne({id:parseInt(shopid)},{price:priceCut},function(err){
       if(err){
         console.log(err);
       }
     });
-  }}
+  }
 });
 
   res.redirect("/");
