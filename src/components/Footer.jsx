@@ -9,6 +9,7 @@ const color={
 
 return(
 <footer>
+<div>
    <h3 style={color}>About Us</h3>
    E-mail : foodvista@gmail.com<br/>
    Phone : 981234567,0128405432<br/>
@@ -20,6 +21,7 @@ return(
    <a href="#" className="email"><Email/></a>
    <br/>
    &copy;copyrights 2021 Food Vista<br/> 
+   </div>
  </footer>
  );
 }

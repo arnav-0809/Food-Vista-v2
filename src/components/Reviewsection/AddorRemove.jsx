@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import Review from "./Review";
 import CreateReview from "./CreateReview";
+import Header from "../Header";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div>
+      <Header/>
       <CreateReview onAdd={addReview}/>
       {
         reviews.map((review,index)=>{

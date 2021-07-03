@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {Container,Row,Col} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "../Header";
 import axios from "axios";
 
 function Cart() {
@@ -62,6 +63,8 @@ function Cart() {
 
 
   return (
+    <div>
+    <Header/>
     <Container>
       <Row className="justify-content-center">
         <Col xs={11} sm={9} md={11} lg={8} className="menuHead">Order Details</Col>
@@ -88,6 +91,7 @@ function Cart() {
         </div>
       </Row>
     </Container>
+  </div>
   );
 }
 

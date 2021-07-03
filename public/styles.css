@@ -364,3 +364,114 @@ form.create-review button {
 }
 
 /*-----------------------------------------------------Cart section ends------------------------------------------------*/
+
+
+/*----------------------------------------------------Signup/Login Section starts------------------------------------------------*/
+
+.login{
+    position: absolute;
+    top:40%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:45vh;
+    height:47vh;
+    border-radius:30px;
+    box-shadow: 0 2px 5px rgb(0,0,0);
+    background: rgb(52, 58, 64);
+}
+
+.loginHead{
+    margin-top:2vh !important;
+    margin-left:15vh !important;
+    color:rgb(240, 94, 94);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bolder;
+}
+
+.loginEmail{
+    margin-left:5vh !important;
+    margin-top:6vh !important;
+    width:35vh;
+}
+
+.loginPassword{
+    margin-left:5vh !important;
+    margin-top:3vh !important;
+    width:35vh;
+}
+
+.loginButton{
+    margin-left:17vh !important;
+    background-color:rgb(240, 94, 94) !important;
+}
+
+.loginLink{
+    text-decoration: none !important;
+    color:rgba(185, 183, 183,0.8) !important;
+    margin-left:8vh !important;
+    margin-top:5vh !important;
+    font-size: 14px;
+}
+
+.loginLink:hover{
+    color:rgb(240, 94, 94) !important;
+}
+
+.MuiFormLabel-root{
+    color:rgb(240, 94, 94) !important;
+}
+
+.MuiInputBase-root{
+    color:rgb(185, 183, 183) !important;
+}
+
+.signup{
+    position: absolute;
+    top:40%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:48vh;
+    height:50vh;
+    border-radius:30px;
+    box-shadow: 0 2px 5px rgb(0,0,0);
+    background: rgb(52, 58, 64);
+}
+
+.signUpHead{
+    margin-top:1vh !important;
+    margin-left:15vh !important;
+    color:rgb(240, 94, 94);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bolder;
+}
+
+.signupEmail{
+    margin-left:6vh !important;
+    margin-top:3vh !important;
+    width:35vh;
+}
+
+.signupPassword{
+    margin-left:6vh !important;
+    margin-top:2vh !important;
+    width:35vh;
+}
+
+.signupButton{
+    margin-left:17vh !important;
+    background-color:rgb(240, 94, 94) !important;
+}
+
+.signupLink{
+    text-decoration: none !important;
+    color:rgba(185, 183, 183,0.8) !important;
+    margin-left:8vh !important;
+    margin-top:4vh !important;
+    font-size: 14px;
+}
+
+.signupLink:hover{
+    color:rgb(240, 94, 94) !important;
+}
+
+/*----------------------------------------------------Signup/Login Section ends------------------------------------------------*/

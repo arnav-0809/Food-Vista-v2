@@ -1,18 +1,20 @@
-import React,{useEffect} from "react";
+import React from "react";
 import FirstCarousel from "./Carousel";
 import Header from "../Header";
 import Menu from "./Menu";
-import Review from "../Reviewsection/AddorRemove"
-import Burger from "../MenuSection/MenuCard/Burger"
-import Fries from "../MenuSection/MenuCard/Fries"
-import IceCream from "../MenuSection/MenuCard/IceCream"
-import Momos from "../MenuSection/MenuCard/Momos"
-import Pasta from "../MenuSection/MenuCard/Pasta"
-import Pastry from "../MenuSection/MenuCard/Pastry"
-import Pizza from "../MenuSection/MenuCard/Pizza"
-import Shakes from "../MenuSection/MenuCard/Shakes"
-import Waffle from "../MenuSection/MenuCard/Waffle"
-import Cart from "../CartSection/CartLay"
+import Review from "../Reviewsection/AddorRemove";
+import Burger from "../MenuSection/MenuCard/Burger";
+import Fries from "../MenuSection/MenuCard/Fries";
+import IceCream from "../MenuSection/MenuCard/IceCream";
+import Momos from "../MenuSection/MenuCard/Momos";
+import Pasta from "../MenuSection/MenuCard/Pasta";
+import Pastry from "../MenuSection/MenuCard/Pastry";
+import Pizza from "../MenuSection/MenuCard/Pizza";
+import Shakes from "../MenuSection/MenuCard/Shakes";
+import Waffle from "../MenuSection/MenuCard/Waffle";
+import Cart from "../CartSection/CartLay";
+import Login from "../SignupLogin/Login";
+import Signup from "../SignupLogin/Signup";
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 function App(){
@@ -20,9 +22,10 @@ function App(){
     return (
         <Router>
         <div>
-            <Header/>
             <Switch>
-            <Route path="/" exact component={Home}/>
+            <Route path="/" exact component={Login}/>
+            <Route path="/signup" exact component={Signup}/>
+            <Route path="/home" exact component={Home}/>
             <Route path="/review" component={Review}/>
             <Route path="/burgermenu" component={Burger}/>
             <Route path="/friesmenu" component={Fries}/>
@@ -42,6 +45,7 @@ function App(){
 
 const Home=()=> (     
     <div> 
+        <Header/>
         <FirstCarousel/>
         <Menu/>
     </div> 

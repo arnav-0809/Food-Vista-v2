@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import {Container,Row,Col} from "react-bootstrap";
 import CardLay from "../CardLayMenu";
 import burger from "../menudetails/Burger";
+import Header from "../../Header";
 import axios from "axios";
 
 
@@ -113,6 +114,8 @@ item2();
 
 //rendering the page 
 return(
+<div>
+<Header/>
 <Container>
     <Row className="justify-content-center">
         <Col xs={12} sm={9} md={11} lg={8} className="menuHead">BurgerMenu</Col>
@@ -164,6 +167,7 @@ return(
           <button className="addToCart" onClick={postItems}>Add to Cart</button>
     </Row>
 </Container>
+</div>
     );
 }
 

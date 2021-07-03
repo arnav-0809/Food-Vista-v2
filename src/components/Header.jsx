@@ -6,14 +6,14 @@ import {Link} from "react-router-dom";
 function Header(){
 return(
  <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-    <Link to="/" style={{textDecoration:"none"}}>
+    <Link to="/home" style={{textDecoration:"none"}}>
       <Navbar.Brand className="navHead" href="#">FoodVista</Navbar.Brand>
     </Link>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Link to="/" style={{textDecoration:"none"}}>
-        <Nav.Link className="navItem" href="#home">Home</Nav.Link>
+      <Link to="/home" style={{textDecoration:"none"}}>
+        <Nav.Link className="navItem" href="#Home">Home</Nav.Link>
       </Link>
       <Link to="/review" style={{textDecoration:"none"}}>
         <Nav.Link className="navItem" href="#reviews">Reviews</Nav.Link>
