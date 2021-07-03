@@ -425,6 +425,10 @@ form.create-review button {
     color:rgb(185, 183, 183) !important;
 }
 
+.Mui-focused fieldset{
+    border-color:rgb(240, 94, 94) !important
+}
+
 .signup{
     position: absolute;
     top:40%;
@@ -472,6 +476,15 @@ form.create-review button {
 
 .signupLink:hover{
     color:rgb(240, 94, 94) !important;
+}
+
+.Toastify__toast{
+background: rgba(0, 0, 0, 0.6) !important;
+color: rgb(240, 94, 94) !important;
+}
+
+.Toastify__progress-bar{
+    background: rgb(240, 94, 94) !important;
 }
 
 /*----------------------------------------------------Signup/Login Section ends------------------------------------------------*/

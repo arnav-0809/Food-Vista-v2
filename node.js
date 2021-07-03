@@ -1,8 +1,13 @@
 const express = require("express");
 const mongoose=require("mongoose");
+const bodyParser = require("body-parser");
+const session=require("express-session");
+const passportLocalMongoose=require("passport-local-mongoose");
+const passport=require("passport");
 const app = express();
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({ extended: false }));
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", '*');
@@ -11,7 +16,20 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(session({
+  secret:"Our little secret.",
+  resave:false,
+  saveUninitialized:false
+}));
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 mongoose.connect("mongodb+srv://admin-arnav:Test123@cluster0.148tt.mongodb.net/foodDB",{ useNewUrlParser: true ,useUnifiedTopology: true ,useFindAndModify: false});
+mongoose.set('useCreateIndex', true);
+
 
 let foodItems=[];
 
@@ -21,9 +39,101 @@ const foodSchema=new mongoose.Schema({
     price:Number,
     totalPrice:Number
   });
+
+const userSchema=new mongoose.Schema({
+  username:{
+    type:String,
+    required:true
+  },
+  password:{
+    type:String,
+  },
+  name:{
+    type:String,
+  },
+  orderDetails:{
+    type:foodSchema
+  },
+  address:{
+    type:String,
+  },
+  phone:{
+    type:Number,
+  },
+  reviews:{
+    type:Array
+  }
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+const User=mongoose.model("User",userSchema);
   
 const Food=mongoose.model("Food",foodSchema);
 
+
+passport.use(User.createStrategy());
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+app.get("/logout",function(req,res){
+  req.logout();
+  res.redirect("/");
+})
+
+app.post("/register",function(req,res){
+  User.register({username:req.body.username},req.body.password,function(err,user){
+      if(err){
+          console.log(err);
+      }else{
+          console.log("successfull")
+          passport.authenticate("local")(req,res,function(){
+              res.redirect("/");
+          });
+      }
+  });
+
+});
+
+app.get("/register",function(req,res){
+  User.find({},function(err,foundUser){
+    var arr=[];
+    foundUser.forEach(function(user){
+      arr.push(user);
+    });
+    res.json(arr);
+})
+})
+
+app.post("/login",function(req,res){
+  const user=new User({
+      username:req.body.username,
+      password:req.body.password
+  });
+
+  req.login(user,function(err){
+      if(err){
+          console.log(err);
+      }
+      else{
+          passport.authenticate("local")(req,res,function(){
+              res.redirect("/secrets");
+      });
+  }
+
+});
+});
+
+
+//-----------------------food item details------------------------------------------------
 
 app.post("/",function (req, res) {
     

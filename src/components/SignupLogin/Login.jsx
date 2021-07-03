@@ -30,7 +30,8 @@ return (
         </Navbar>
        <div class="login">
           <h1 className="loginHead">LogIn</h1>
-          <TextField className="loginEmail" id="outlined-basic" label="Email" type="email" placeholder="Email" variant="outlined" InputProps={{
+          <TextField className="loginEmail" id="outlined-basic" label="Email" type="email" placeholder="Email" variant="outlined" 
+          InputProps={{
           startAdornment:(
             <InputAdornment position="start">
               <AccountCircle style={{"color":"rgb(21, 22, 24)"}}/>

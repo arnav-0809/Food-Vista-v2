@@ -3,7 +3,10 @@ import {IconButton,OutlinedInput,InputLabel,InputAdornment,FormControl,TextField
 import {Visibility,VisibilityOff,AccountCircle,Lock} from '@material-ui/icons';
 import {Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import { ToastContainer,toast } from 'react-toastify';
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Signup(){
@@ -11,23 +14,58 @@ function Signup(){
       password: '',
       showPassword: false,
     });
-
+    const[email,setEmail]=useState('');
     const[passwordMatch,setPasswordMatch]=useState(false);
 
 
+    const body=JSON.stringify({
+      username:email,
+      password:values.password
+    });
+  
+  
+    const postItems= async()=>{
+       const request=await axios.post("http://localhost:8080/register",body,{
+      headers: {'Content-Type': 'application/json' }
+    });
+   }
+
     const wrongPassword=()=>{
-      if(!passwordMatch)
+      if(values.password==='')
       {
-        alert("passwords don't match");
+        toast.dark("Please enter the passowrd", {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          backgound:"rgb(52, 58, 64) !important"
+          });
       }
-      else if(values.password==='' || revalues.password==='')
+      else if(!passwordMatch)
       {
-        alert("please enter the password");
+        toast.dark("Passwords don't match!", {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          backgound:"rgb(52, 58, 64) !important"
+          });
+      }
+
+      if(values.password===revalues.password && values.password!=='' && email!=='')
+      {
+        postItems();
       }
     }
 
     const passwordCheck=()=>{
-      if(values.password===revalues.password && values.password!=='')
+      if(values.password===revalues.password && values.password!=='' && values.email!=='')
       setPasswordMatch(true);
     }
     
@@ -65,9 +103,20 @@ return (
         <Navbar bg="dark" variant="dark">
            <Navbar.Brand className="navHead">FoodVista</Navbar.Brand>
         </Navbar>
+        <ToastContainer
+          position="top-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+        />
        <div className="signup">
           <h1 className="signUpHead">SignUp</h1>
-          <TextField className="signupEmail" id="outlined-basic" label="E-mail" type="email" placeholder="Email" variant="outlined" InputProps={{
+          <TextField className="signupEmail" value={email} onChange={(e) => setEmail(e. target. value)} id="outlined-basic" label="E-mail" placeholder="Email" variant="outlined" InputProps={{
           startAdornment:(
             <InputAdornment position="start">
               <AccountCircle style={{"color":"rgb(21, 22, 24)"}}/>
@@ -80,6 +129,7 @@ return (
               id="outlined-adornment-password"
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
+              name="password"
               onChange={handleChange('password')}
               startAdornment={
                 <InputAdornment position="start">
