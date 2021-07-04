@@ -487,4 +487,15 @@ color: rgb(240, 94, 94) !important;
     background: rgb(240, 94, 94) !important;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+ box-shadow: 0 0 0 30px rgb(52, 58, 64) inset !important;
+ -webkit-text-fill-color:rgb(185, 183, 183) !important;
+ border-left: none !important;
+}
+
+
 /*----------------------------------------------------Signup/Login Section ends------------------------------------------------*/

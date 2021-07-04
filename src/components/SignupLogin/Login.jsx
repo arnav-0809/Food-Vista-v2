@@ -1,16 +1,35 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {IconButton,OutlinedInput,InputLabel,InputAdornment,FormControl,TextField,Button} from '@material-ui/core';
 import {Visibility,VisibilityOff,AccountCircle,Lock} from '@material-ui/icons';
 import {Navbar} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Link} from "react-router-dom";
+import {Link,Redirect} from "react-router-dom";
+import axios from "axios";
 
-function Signup(){
+function Login(){
     const [values, setValues] = useState({
       password: '',
       showPassword: false,
     });
     
+    const[email,setEmail]=useState('');
+    const[login,setLogin]=useState(false);
+
+    const body=JSON.stringify({
+      username:email,
+      password:values.password
+    });
+  
+    const postItems = async ()=>{
+      try{
+          const res = await axios.post('http://localhost:8080/login', body, {headers:{'Content-Type':'application/json'}});
+          setLogin(res.data.success);
+      }
+      catch(err){
+          console.log("Error :", err);
+      }
+  }
+
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
     };
@@ -22,6 +41,11 @@ function Signup(){
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
+
+    if(login)
+    {
+      return <Redirect to="/home"/>
+    }
       
 return (
     <div>
@@ -30,7 +54,7 @@ return (
         </Navbar>
        <div class="login">
           <h1 className="loginHead">LogIn</h1>
-          <TextField className="loginEmail" id="outlined-basic" label="Email" type="email" placeholder="Email" variant="outlined" 
+          <TextField className="loginEmail" name="loginusername" value={email} onChange={(e) => setEmail(e. target. value)} id="outlined-basic" label="Email" type="email" placeholder="Email" variant="outlined" 
           InputProps={{
           startAdornment:(
             <InputAdornment position="start">
@@ -42,6 +66,7 @@ return (
             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
             <OutlinedInput placeholder="Password"
               id="outlined-adornment-password"
+              name="loginpassword"
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
               onChange={handleChange('password')}
@@ -66,12 +91,12 @@ return (
             />
           </FormControl>
           <Link to="/signup" className="loginLink"><p className="loginLink">Haven't signed up yet? Click here</p></Link>
-          <Button variant="contained" className="loginButton">
-             <Link to="/home" style={{textDecoration:"none",color:"rgb(52, 58, 64)"}}>Login</Link>
+          <Button onClick={postItems} variant="contained" className="loginButton">
+             <span>Login</span>
           </Button>
         </div>
       </div>
     );
 }
 
-export default Signup;
+export default Login;

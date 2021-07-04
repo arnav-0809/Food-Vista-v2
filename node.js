@@ -52,7 +52,7 @@ const userSchema=new mongoose.Schema({
     type:String,
   },
   orderDetails:{
-    type:foodSchema
+    type:[foodSchema]
   },
   address:{
     type:String,
@@ -113,7 +113,9 @@ app.get("/register",function(req,res){
 })
 })
 
+
 app.post("/login",function(req,res){
+  login=0;
   const user=new User({
       username:req.body.username,
       password:req.body.password
@@ -122,12 +124,13 @@ app.post("/login",function(req,res){
   req.login(user,function(err){
       if(err){
           console.log(err);
+          res.json({success:false});
       }
       else{
           passport.authenticate("local")(req,res,function(){
-              res.redirect("/secrets");
-      });
-  }
+            res.json({success:true});
+          });
+         }
 
 });
 });
@@ -153,8 +156,7 @@ app.post("/",function (req, res) {
       price:req.body.price
     });
     food.save();
-
-
+   
 })
 
 app.get("/delete/:ID",function(req,res){

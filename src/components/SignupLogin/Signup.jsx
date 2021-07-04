@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {IconButton,OutlinedInput,InputLabel,InputAdornment,FormControl,TextField,Button} from '@material-ui/core';
 import {Visibility,VisibilityOff,AccountCircle,Lock} from '@material-ui/icons';
 import {Navbar} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import { ToastContainer,toast } from 'react-toastify';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -65,7 +65,7 @@ function Signup(){
     }
 
     const passwordCheck=()=>{
-      if(values.password===revalues.password && values.password!=='' && values.email!=='')
+      if(values.password===revalues.password && values.password!=='' && email!=='')
       setPasswordMatch(true);
     }
     
@@ -97,6 +97,12 @@ function Signup(){
     const reHandleMouseDownPassword = (event) => {
       event.preventDefault();
     };
+
+
+    if(passwordMatch)
+    {
+      return <Redirect to="/home"/>
+    }
       
 return (
     <div>
@@ -180,7 +186,7 @@ return (
           </FormControl>
           <Link to="/" className="signupLink"><p className="signupLink">Already signed up ? Click to login</p></Link>
           <Button onMouseEnter={passwordCheck} onClick={wrongPassword} variant="contained" className="signupButton">
-            {passwordMatch?<Link to="/home" style={{textDecoration:"none",color:"rgb(52, 58, 64)"}}>Signup </Link>:<span>Signup</span>}
+            <span>Signup</span>
           </Button>
           </div>
         </div>
