@@ -2,8 +2,8 @@ const express = require("express");
 const mongoose=require("mongoose");
 const bodyParser = require("body-parser");
 const session=require("express-session");
-const passportLocalMongoose=require("passport-local-mongoose");
 const passport=require("passport");
+const passportLocalMongoose=require("passport-local-mongoose");
 const app = express();
 
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(session({
-  secret:"Our little secret.",
+  secret:"Hello.",
   resave:false,
   saveUninitialized:false
 }));
@@ -32,6 +32,7 @@ mongoose.set('useCreateIndex', true);
 
 
 let foodItems=[];
+var userid="";
 
 const foodSchema=new mongoose.Schema({
     id:Number,
@@ -71,7 +72,6 @@ const User=mongoose.model("User",userSchema);
   
 const Food=mongoose.model("Food",foodSchema);
 
-
 passport.use(User.createStrategy());
 
 passport.serializeUser(function(user, done) {
@@ -96,11 +96,12 @@ app.post("/register",function(req,res){
       }else{
           console.log("successfull")
           passport.authenticate("local")(req,res,function(){
+              userid=req.body.username;
+              console.log(userid);
               res.redirect("/");
           });
       }
   });
-
 });
 
 app.get("/register",function(req,res){
@@ -115,7 +116,6 @@ app.get("/register",function(req,res){
 
 
 app.post("/login",function(req,res){
-  login=0;
   const user=new User({
       username:req.body.username,
       password:req.body.password
@@ -129,17 +129,18 @@ app.post("/login",function(req,res){
       else{
           passport.authenticate("local")(req,res,function(){
             res.json({success:true});
+            userid=req.body.username;
+            console.log(userid);
           });
          }
 
 });
 });
 
-
 //-----------------------food item details------------------------------------------------
 
+
 app.post("/",function (req, res) {
-    
     Food.deleteOne({id:req.body.id},function(err){
       if(err){
         console.log(err);
@@ -148,15 +149,34 @@ app.post("/",function (req, res) {
         console.log("deleted successfully");
       }
     })
-    
-    
     const food=new Food({
       id:req.body.id,
       item:req.body.item,
       price:req.body.price
     });
+    console.log(userid);
+    User.findOne({username:userid},function(err,foundUser){
+      if(err){
+        console.log(err)
+      }
+      else{
+        if(foundUser.orderDetails.length!==0)
+        {
+          User.findOneAndUpdate({username:userid},{$pull:{orderDetails:{id:parseInt(food.id)}}},{multi:true},function(err){
+            if(err)
+              {
+                console.log(err);
+              }
+              else{
+                 console.log("changes");
+              }
+          })
+        }
+      }
+      foundUser.orderDetails.push(food);
+      foundUser.save();
+    })
     food.save();
-   
 })
 
 app.get("/delete/:ID",function(req,res){

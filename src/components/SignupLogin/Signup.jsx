@@ -23,51 +23,57 @@ function Signup(){
       password:values.password
     });
   
-  
     const postItems= async()=>{
+    try{
        const request=await axios.post("http://localhost:8080/register",body,{
       headers: {'Content-Type': 'application/json' }
     });
-   }
-
-    const wrongPassword=()=>{
-      if(values.password==='')
-      {
-        toast.dark("Please enter the passowrd", {
-          position: "top-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          backgound:"rgb(52, 58, 64) !important"
-          });
-      }
-      else if(!passwordMatch)
-      {
-        toast.dark("Passwords don't match!", {
-          position: "top-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          backgound:"rgb(52, 58, 64) !important"
-          });
-      }
-
-      if(values.password===revalues.password && values.password!=='' && email!=='')
-      {
-        postItems();
-      }
-    }
-
-    const passwordCheck=()=>{
-      if(values.password===revalues.password && values.password!=='' && email!=='')
+    if(values.password===revalues.password && values.password!=='' && email!=='')
+    {
       setPasswordMatch(true);
     }
+   }
+   catch(err){
+    if(email==='')
+    {
+      toast.dark("Please enter the email", {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        backgound:"rgb(52, 58, 64) !important"
+        });
+    }
+    else if(values.password==='')
+    {
+      toast.dark("Please enter the passowrd", {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        backgound:"rgb(52, 58, 64) !important"
+        });
+    }
+    else if(!passwordMatch)
+    {
+      toast.dark("Passwords don't match!", {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        backgound:"rgb(52, 58, 64) !important"
+        });
+    }
+   }}
     
     const handleChange = (prop) => (event) => {
       setValues({ ...values, [prop]: event.target.value });
@@ -185,7 +191,7 @@ return (
             />
           </FormControl>
           <Link to="/" className="signupLink"><p className="signupLink">Already signed up ? Click to login</p></Link>
-          <Button onMouseEnter={passwordCheck} onClick={wrongPassword} variant="contained" className="signupButton">
+          <Button onClick={postItems} variant="contained" className="signupButton">
             <span>Signup</span>
           </Button>
           </div>

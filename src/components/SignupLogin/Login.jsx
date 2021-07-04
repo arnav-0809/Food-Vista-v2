@@ -1,7 +1,8 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import {IconButton,OutlinedInput,InputLabel,InputAdornment,FormControl,TextField,Button} from '@material-ui/core';
 import {Visibility,VisibilityOff,AccountCircle,Lock} from '@material-ui/icons';
 import {Navbar} from "react-bootstrap";
+import { ToastContainer,toast } from 'react-toastify';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Link,Redirect} from "react-router-dom";
 import axios from "axios";
@@ -26,6 +27,16 @@ function Login(){
           setLogin(res.data.success);
       }
       catch(err){
+          toast.dark("You have not signed up yet", {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          backgound:"rgb(52, 58, 64) !important"
+          });
           console.log("Error :", err);
       }
   }
@@ -52,6 +63,17 @@ return (
         <Navbar bg="dark" variant="dark">
            <Navbar.Brand className="navHead">FoodVista</Navbar.Brand>
         </Navbar>
+        <ToastContainer
+          position="top-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+        />
        <div class="login">
           <h1 className="loginHead">LogIn</h1>
           <TextField className="loginEmail" name="loginusername" value={email} onChange={(e) => setEmail(e. target. value)} id="outlined-basic" label="Email" type="email" placeholder="Email" variant="outlined" 
