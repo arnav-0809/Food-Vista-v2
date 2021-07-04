@@ -16,6 +16,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+//creating a session
 app.use(session({
   secret:"Hello.",
   resave:false,
@@ -32,8 +33,10 @@ mongoose.set('useCreateIndex', true);
 
 
 let foodItems=[];
+//Id for the entire session
 var userid="";
 
+//Food Schema declared
 const foodSchema=new mongoose.Schema({
     id:Number,
     item:Array,
@@ -41,10 +44,12 @@ const foodSchema=new mongoose.Schema({
     totalPrice:Number
   });
 
+//User Schema declared with array of foodSchema named as Order Details
 const userSchema=new mongoose.Schema({
   username:{
     type:String,
-    required:true
+    required:true,
+    unique:true
   },
   password:{
     type:String,
@@ -73,11 +78,11 @@ const User=mongoose.model("User",userSchema);
 const Food=mongoose.model("Food",foodSchema);
 
 passport.use(User.createStrategy());
-
+//Creating cookie of the session
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
-
+//Destroying cookie of the session
 passport.deserializeUser(function(id, done) {
   User.findById(id, function(err, user) {
     done(err, user);
@@ -89,6 +94,7 @@ app.get("/logout",function(req,res){
   res.redirect("/");
 })
 
+//Signing up the user 
 app.post("/register",function(req,res){
   User.register({username:req.body.username},req.body.password,function(err,user){
       if(err){
@@ -104,6 +110,7 @@ app.post("/register",function(req,res){
   });
 });
 
+//Fetching User Collection and displaying it on this route
 app.get("/register",function(req,res){
   User.find({},function(err,foundUser){
     var arr=[];
@@ -114,7 +121,7 @@ app.get("/register",function(req,res){
 })
 })
 
-
+//Logging in(for signed up users)
 app.post("/login",function(req,res){
   const user=new User({
       username:req.body.username,
@@ -137,10 +144,11 @@ app.post("/login",function(req,res){
 });
 });
 
-//-----------------------food item details------------------------------------------------
 
 
+//Posting users and food items to database 
 app.post("/",function (req, res) {
+    //Deleting food from the food collection of the database
     Food.deleteOne({id:req.body.id},function(err){
       if(err){
         console.log(err);
@@ -149,6 +157,8 @@ app.post("/",function (req, res) {
         console.log("deleted successfully");
       }
     })
+
+    //Fetching food item details from the frontend
     const food=new Food({
       id:req.body.id,
       item:req.body.item,
@@ -160,25 +170,27 @@ app.post("/",function (req, res) {
         console.log(err)
       }
       else{
-        if(foundUser.orderDetails.length!==0)
-        {
+      //Deleting the previous record of the existing food items of a particuar shop
           User.findOneAndUpdate({username:userid},{$pull:{orderDetails:{id:parseInt(food.id)}}},{multi:true},function(err){
             if(err)
               {
                 console.log(err);
               }
               else{
+                //Adding the renewed record of that particular shop if it exists by fetching from the frontend
+                 foundUser.orderDetails.push(food);
+                 foundUser.save();
                  console.log("changes");
               }
           })
-        }
       }
-      foundUser.orderDetails.push(food);
-      foundUser.save();
+      
     })
     food.save();
 })
 
+
+//Triggers when delete icon is clicked
 app.get("/delete/:ID",function(req,res){
   const itemid=req.params.ID;
   var priceCut=0;
@@ -237,30 +249,64 @@ app.get("/delete/:ID",function(req,res){
   }
 });
 
+//removing a food item when the delete icon is clicked
+User.findOneAndUpdate({username:userid}, { $pull: { orderDetails: {id:parseInt(shopid)} } },{multi:true,new:true}, function(err,foundFood){
+  if(err)
+  {
+    console.log(err);
+  }else{
+    Food.findOne({id:parseInt(shopid)},function(err,foundFood){
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log("added");
+        if(foundFood!==null)
+        {
+          User.findOne({username:userid},function(err,foundUser){
+          foundFood.price=priceCut;
+          foundUser.orderDetails.push(foundFood);
+          foundUser.save();
+        })
+        }
+      }
+    });
+  }
+});
+
   res.redirect("/");
 })
 
-
+//Fetching food Collection and displaying it on this route
 app.get("/",function(req,res){
 
-     Food.find({},function(err,foundFood){
-         var arr=[];
-         foundFood.forEach(function(food){
-           arr.push(food);
-           if(food.item.length===0)
-           {
-            Food.deleteOne({id:food.id},function(err){
-              if(err){
-                console.log(err);
-              }
-              else{
-                console.log("deleted");
-              }
-            })
-           }
-         });
-         foodItems=arr;
-         res.json(foodItems);
+ Food.find({},function(err,foundFood){
+     var arr=[];
+     foundFood.forEach(function(food){
+       arr.push(food);
+       if(food.item.length===0)
+       {
+        Food.deleteOne({id:food.id},function(err){
+          if(err){
+            console.log(err);
+          }
+          else{
+            console.log("deleted");
+          }
+        })
+         User.findOneAndUpdate({username:userid},{$pull:{orderDetails:{id:parseInt(food.id)}}},{multi:true},function(err){
+          if(err)
+          {
+            console.log(err);
+          }
+          else{
+            console.log("deleted from userschema");
+          }
+        })
+        }
+     });
+     foodItems=arr;
+     res.json(foodItems);
 });
 })
 

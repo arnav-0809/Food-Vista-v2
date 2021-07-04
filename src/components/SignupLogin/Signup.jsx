@@ -14,9 +14,18 @@ function Signup(){
       password: '',
       showPassword: false,
     });
+    let isValid=false;
     const[email,setEmail]=useState('');
     const[passwordMatch,setPasswordMatch]=useState(false);
-
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    if(!pattern.test(email))
+    {
+      isValid=false;
+    }
+    else
+    {
+      isValid=true;
+    }
 
     const body=JSON.stringify({
       username:email,
@@ -25,18 +34,16 @@ function Signup(){
   
     const postItems= async()=>{
     try{
+      if(values.password===revalues.password && values.password!=='' && isValid)
+      {
        const request=await axios.post("http://localhost:8080/register",body,{
-      headers: {'Content-Type': 'application/json' }
-    });
-    if(values.password===revalues.password && values.password!=='' && email!=='')
-    {
+         headers: {'Content-Type': 'application/json' }
+       });
       setPasswordMatch(true);
-    }
-   }
-   catch(err){
-    if(email==='')
-    {
-      toast.dark("Please enter the email", {
+      }
+    else if(!isValid)
+     {
+      toast.dark("Enter a valid email", {
         position: "top-center",
         autoClose: 4000,
         hideProgressBar: false,
@@ -73,6 +80,8 @@ function Signup(){
         backgound:"rgb(52, 58, 64) !important"
         });
     }
+   }
+   catch(err){
    }}
     
     const handleChange = (prop) => (event) => {
