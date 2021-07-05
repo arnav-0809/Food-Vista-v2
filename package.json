@@ -2,11 +2,7 @@
   "name": "food-vista",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/api/*": {
-    "target": "http://[::1]:8080"
-    }
-    },
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",

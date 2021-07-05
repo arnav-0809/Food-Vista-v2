@@ -44,6 +44,12 @@ const foodSchema=new mongoose.Schema({
     totalPrice:Number
   });
 
+const reviewSchema=new mongoose.Schema({
+  reviewid:String,
+  title:String,
+  content:String
+})
+
 //User Schema declared with array of foodSchema named as Order Details
 const userSchema=new mongoose.Schema({
   username:{
@@ -67,14 +73,14 @@ const userSchema=new mongoose.Schema({
     type:Number,
   },
   reviews:{
-    type:Array
+    type:[reviewSchema]
   }
 });
 
 userSchema.plugin(passportLocalMongoose);
 
 const User=mongoose.model("User",userSchema);
-  
+const Review=mongoose.model("Review",reviewSchema); 
 const Food=mongoose.model("Food",foodSchema);
 
 passport.use(User.createStrategy());
@@ -310,6 +316,41 @@ app.get("/",function(req,res){
 });
 })
 
+//------------------Reviews
+
+app.post("/review",function(req,res){
+  const review=new Review({
+    reviewid:userid,
+    title:req.body.title,
+    content:req.body.content
+  })
+  User.findOne({username:userid},function(err,foundUser){
+    if(err){
+      console.log(err)
+    }else{
+      foundUser.reviews.push(review);
+      foundUser.save();
+    }
+  })
+  review.save();
+})
+
+
+app.get("/review",function(req,res){
+  Review.find({},function(err,foundReview){
+    var arr=[];
+    foundReview.forEach(function(review){
+      arr.push(review);
+    })
+    res.json(arr);
+  })
+})
+
+
+// app.get("/review/:id",function(req,res){
+//   const ID=req.params.id;
+//   Review.deleteOne()
+// })
 
   
 const PORT = process.env.PORT || 8080;

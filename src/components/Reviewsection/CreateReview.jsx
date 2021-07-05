@@ -4,6 +4,7 @@ import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom"
 import {Overlay,Tooltip} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 function CreateArea(props) {
 
@@ -29,6 +30,7 @@ function CreateArea(props) {
   function submit(event){
     if(newReview.title!=="" && newReview.content!==""){
       props.onAdd(newReview);
+      props.onClick(newReview);
       setExpanded(false);
       setShow(false);
     }
