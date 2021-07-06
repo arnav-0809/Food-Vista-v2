@@ -59,8 +59,6 @@ function Cart() {
       fetchItems()
   },[]);
 
-  
-
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import FirstCarousel from "./Carousel";
 import Header from "../Header";
 import Menu from "./Menu";
@@ -43,12 +43,15 @@ function App(){
     );
 }
 
-const Home=()=> (     
+const Home=()=> {     
+    return (
     <div> 
         <Header/>
         <FirstCarousel/>
         <Menu/>
-    </div> 
-);
+    </div>
+    );
+ };
+
 
 export default App;

@@ -55,7 +55,7 @@ function Login(){
 
     if(login)
     {
-      return <Redirect to="/home"/>
+      return <Redirect to={`/home?user=${email}`}/>
     }
       
 return (
