@@ -1,5 +1,9 @@
+//comment out this for heroku
+require('dotenv').config();
+
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path"); 
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
@@ -28,7 +32,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://admin-arnav:Test123@cluster0.148tt.mongodb.net/foodDB", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.set('useCreateIndex', true);
 
 
@@ -420,6 +424,11 @@ app.post("/details",function(req,res){
   });
 })
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 8080;
 
