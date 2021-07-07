@@ -63,18 +63,8 @@ return (
         <Navbar bg="dark" variant="dark">
            <Navbar.Brand className="navHead">FoodVista</Navbar.Brand>
         </Navbar>
-        <ToastContainer
-          position="top-center"
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover
-        />
-       <div class="login">
+        <ToastContainer/>
+       <div className="login">
           <h1 className="loginHead">LogIn</h1>
           <TextField className="loginEmail" name="loginusername" value={email} onChange={(e) => setEmail(e. target. value)} id="outlined-basic" label="Email" type="email" placeholder="Email" variant="outlined" 
           InputProps={{

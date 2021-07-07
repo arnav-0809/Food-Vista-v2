@@ -51,6 +51,13 @@ const reviewSchema = new mongoose.Schema({
   content: String
 })
 
+const addressSchema=new mongoose.Schema({
+  address:String,
+  city:String,
+  state:String,
+  pin:Number
+})
+
 //User Schema declared with array of foodSchema named as Order Details
 const userSchema = new mongoose.Schema({
   username: {
@@ -68,7 +75,7 @@ const userSchema = new mongoose.Schema({
     type: [foodSchema]
   },
   address: {
-    type: String,
+    type: addressSchema,
   },
   phone: {
     type: Number,
@@ -86,6 +93,7 @@ userSchema.plugin(passportLocalMongoose);
 const User = mongoose.model("User", userSchema);
 const Review = mongoose.model("Review", reviewSchema);
 const Food = mongoose.model("Food", foodSchema);
+const Address=mongoose.model("Address",addressSchema);
 
 passport.use(User.createStrategy());
 //Creating cookie of the session
@@ -396,6 +404,20 @@ app.get("/review/:id",function(req,res){
 
 app.get("/reviewdelete",function(req,res){
   res.json({username:userid});
+})
+
+app.post("/details",function(req,res){
+  const address=new Address({
+    address:req.body.address,
+    city:req.body.city,
+    state:req.body.state,
+    pin:req.body.pin
+  });
+  User.updateOne({username:userid},{address:address},function(err){
+    if(err){
+      console.log(err);
+    }
+  });
 })
 
 

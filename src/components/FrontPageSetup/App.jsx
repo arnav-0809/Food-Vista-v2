@@ -15,6 +15,7 @@ import Waffle from "../MenuSection/MenuCard/Waffle";
 import Cart from "../CartSection/CartLay";
 import Login from "../SignupLogin/Login";
 import Signup from "../SignupLogin/Signup";
+import Details from "../DetailsSection/Details"
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 function App(){
@@ -37,6 +38,7 @@ function App(){
             <Route path="/shakesmenu" component={Shakes}/>
             <Route path="/wafflemenu" component={Waffle}/>
             <Route path="/cart" component={Cart}/>
+            <Route path="/details" component={Details}/>
             </Switch>
         </div>
         </Router>

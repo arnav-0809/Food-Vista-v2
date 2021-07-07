@@ -500,3 +500,93 @@ input:-webkit-autofill:active {
 }
 
 /*----------------------------------------------------Signup/Login Section ends------------------------------------------------*/
+
+/*---------------------------------------------------Details Page-----------------------------------------*/
+
+@media only screen and (min-width: 768px) {
+  .detail {
+    background: #343a40;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px rgb(138, 137, 137);
+    padding: 10px;
+    width: 60%;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 4vh;
+    font-family: "Roboto Mono", monospace;
+  }
+
+  .detail1,
+  .detail2,
+  .detail3 {
+    display: flex !important;
+    margin-right: 5vh;
+  }
+  .detailName,
+  .detailPhone,
+  .detailAddress {
+    margin-left: 5vh !important;
+    margin-top: 6vh !important;
+    flex: 1;
+  }
+
+  .detail4 {
+    display: flex !important;
+    margin-bottom: 5vh !important;
+  }
+
+  .detailCity {
+    margin: 6vh 0 6vh 5vh !important;
+    flex: 1;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .detail {
+    background: #343a40;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px rgb(138, 137, 137);
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 4vh;
+    font-family: "Roboto Mono", monospace;
+  }
+  .detail1,
+  .detail2,
+  .detail3 {
+    margin-right: 5vh;
+  }
+  .detailName,
+  .detailPhone,
+  .detailAddress {
+    margin-left: 5vh !important;
+    margin-top: 6vh !important;
+  }
+
+  .detail4 {
+    display: flex !important;
+    margin-bottom: 5vh !important;
+  }
+
+  .detailCity {
+    margin: 6vh 0 0 5vh !important;
+  }
+
+  .pin {
+    margin-bottom: 6vh !important;
+  }
+}
+
+.detailButton {
+  background-color: rgb(240, 94, 94) !important;
+  color: rgb(52, 58, 64) !important;
+  flex: 1;
+  margin: 0 25% !important;
+}
+
+.detailInstruction {
+  margin-left: 5px !important;
+  color: rgb(240, 94, 94);
+}
