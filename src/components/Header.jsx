@@ -1,5 +1,5 @@
 import React from "react";
-import {Nav,Navbar} from "react-bootstrap";
+import {Nav,Navbar,NavDropdown} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Link} from "react-router-dom";
 
@@ -15,6 +15,35 @@ return(
       <Link to="/home" style={{textDecoration:"none"}}>
         <Nav.Link className="navItem" href="#Home">Home</Nav.Link>
       </Link>
+      <NavDropdown title="Menu" id="basic-nav-dropdown" className="navItem">
+        <Link to="/burgermenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem" >Burger Menu</NavDropdown.Item>
+        </Link>
+        <Link to="/pizzamenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem" >Pizza Menu</NavDropdown.Item>
+        </Link>
+        <Link to="/wafflemenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem">Waffle Menu</NavDropdown.Item>
+        </Link>
+        <Link to="/friesmenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem">Fries Menu</NavDropdown.Item>
+        </Link>
+        <Link to="/momosmenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem">Momos Menu</NavDropdown.Item>
+        </Link>
+        <Link to="/shakesmenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem">Shake Menu</NavDropdown.Item>
+        </Link>
+        <Link to="/pastrymenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem">Pastry Menu</NavDropdown.Item>
+        </Link>
+        <Link to="/pastamenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem">Pasta Menu</NavDropdown.Item>
+        </Link>
+        <Link to="/icecreammenu" style={{textDecoration:"none"}}>
+          <NavDropdown.Item href="#action/3.1" className="navItem">IceCream Menu</NavDropdown.Item>
+        </Link>
+      </NavDropdown>
       <Link to="/review" style={{textDecoration:"none"}}>
         <Nav.Link className="navItem" href="#reviews">Reviews</Nav.Link>
       </Link>

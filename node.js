@@ -33,6 +33,7 @@ mongoose.set('useCreateIndex', true);
 
 
 let foodItems = [];
+let orderItems=[];
 //Id for the entire session
 var userid = "";
 
@@ -40,8 +41,7 @@ var userid = "";
 const foodSchema = new mongoose.Schema({
   id: Number,
   item: Array,
-  price: Number,
-  totalPrice: Number
+  price: Number
 });
 
 const reviewSchema = new mongoose.Schema({
@@ -75,6 +75,9 @@ const userSchema = new mongoose.Schema({
   },
   reviews: {
     type: [reviewSchema]
+  },
+  totalPrice: {
+    type:Number
   }
 });
 
@@ -309,6 +312,24 @@ app.get("/", function (req, res) {
     foodItems = arr;
     res.json(foodItems);
   });
+
+})
+
+app.get("/cart",function(req,res){
+  User.findOne({username:userid},function(err,foundUser){
+    if(foundUser.orderDetails.length===0)
+    {
+      orderItems=[];
+    }else{
+      var orderPrice=0;
+      foundUser.orderDetails.map((i)=>orderPrice+=parseInt(i.price));
+      foundUser.totalPrice=orderPrice;
+      foundUser.save();
+      orderItems=foundUser.orderDetails;
+    }
+
+  })
+  res.json(orderItems);
 })
 
 //------------------Reviews
@@ -371,6 +392,10 @@ app.get("/review/:id",function(req,res){
       console.log("deleted from userschema");
     }
   })
+})
+
+app.get("/reviewdelete",function(req,res){
+  res.json({username:userid});
 })
 
 

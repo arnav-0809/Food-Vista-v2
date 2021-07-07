@@ -13,7 +13,7 @@ function App(props) {
   }
 
   const fetchData=async()=>{
-    const {data,username}=await axios.get("http://localhost:8080/review");
+    const {data}=await axios.get("http://localhost:8080/review");
     setDatabaseReviews(data);
   }
 
@@ -22,7 +22,7 @@ function App(props) {
       return[...prevReviews,newReview];
     });
   }
-  const url=window.location.search;
+  
   async function deleteReview(id,reviewid){
     // setDatabaseReviews(prevReviews=>{
     //   return prevReviews.filter((reviewItem,index)=>{

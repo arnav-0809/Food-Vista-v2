@@ -51,8 +51,12 @@ function Cart() {
   // }
 
   const fetchItems= async ()=>{
-    const {data}=await axios.get("http://localhost:8080")
-    setDatabaseOrder(data);
+    try{
+    const {data}=await axios.get("http://localhost:8080/cart");
+      setDatabaseOrder(data);
+    }catch(err){
+      console.log(err);
+    }
   };
 
   useEffect(()=>{
@@ -67,7 +71,7 @@ function Cart() {
       <Row className="justify-content-center">
         <Col xs={11} sm={9} md={11} lg={8} className="menuHead">Order Details</Col>
       </Row>
-      <Row className="justify-content-center">{databaseOrder && databaseOrder.map((i)=>
+      {(price!==0) &&<Row className="justify-content-center">{databaseOrder && databaseOrder.map((i)=>
       <div className="cart">
           {i.item.map((j,index)=><div className="cartIn">
           <h1>Item Name : <p style={stylePrice}>{j.item}</p></h1>
@@ -78,7 +82,7 @@ function Cart() {
         )}
         </div>
         )}
-      </Row>
+      </Row>}
       <Row className="justify-content-center">
         <div className="cart">
           <h1 style={style}>Total Price   :</h1>
