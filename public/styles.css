@@ -66,6 +66,24 @@ body {
   background-color: darkslategray !important;
 }
 
+.navbarButton {
+  background: #343a40;
+  color: rgb(240, 94, 94);
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgb(138, 137, 137);
+  font-family: "Roboto Mono", monospace;
+  border-radius: 5px;
+  padding: 4px 10px;
+  margin-right: 2px;
+  backdrop-filter: saturate(100%) blur(5px);
+}
+
+@media only screen and (max-width: 768px) {
+  .navbarButton {
+    margin-bottom: 10px;
+  }
+}
+
 .navSearch {
   color: rgb(138, 137, 137) !important;
   border-color: rgb(138, 137, 137) !important ;

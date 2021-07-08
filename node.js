@@ -17,6 +17,7 @@ app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,PUT,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept');
+  res.setHeader('Access-Control-Allow-Credentials','true');
   next();
 });
 
@@ -32,7 +33,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect("mongodb+srv://admin-arnav:Test123@cluster0.148tt.mongodb.net/foodDB", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.set('useCreateIndex', true);
 
 
@@ -89,6 +90,10 @@ const userSchema = new mongoose.Schema({
   },
   totalPrice: {
     type:Number
+  },
+  orderStatus:{
+    type:String,
+    default:"not placed"
   }
 });
 
@@ -111,9 +116,16 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
+app.get("/user",function(req,res){
+  res.json({username:userid});
+})
+
 app.get("/logout", function (req, res) {
-  req.logout();
-  res.redirect("/");
+  req.logout(function(err){
+    console.log(err);
+  });
+  res.json({success:true});
+  userid="";
 })
 
 //Signing up the user 
@@ -328,6 +340,7 @@ app.get("/", function (req, res) {
 })
 
 app.get("/cart",function(req,res){
+  if(userid!==""){
   User.findOne({username:userid},function(err,foundUser){
     if(foundUser.orderDetails.length===0)
     {
@@ -339,9 +352,8 @@ app.get("/cart",function(req,res){
       foundUser.save();
       orderItems=foundUser.orderDetails;
     }
-
-  })
-  res.json(orderItems);
+    res.json(foundUser);
+  })}
 })
 
 //------------------Reviews
@@ -411,24 +423,34 @@ app.get("/reviewdelete",function(req,res){
 })
 
 app.post("/details",function(req,res){
+  const phone=req.body.phone;
+  const name=req.body.name;
   const address=new Address({
-    address:req.body.address,
-    city:req.body.city,
-    state:req.body.state,
-    pin:req.body.pin
+    address:req.body.address.address,
+    city:req.body.address.city,
+    state:req.body.address.state,
+    pin:req.body.address.pin
   });
-  User.updateOne({username:userid},{address:address},function(err){
+  User.updateMany({username:userid},{phone:phone,name:name,orderStatus:"placed"},function(err){
     if(err){
       console.log(err);
     }
   });
+
+  User.updateOne({username:userid},{address:address},function(err){
+    if(err){
+      console.log(err);
+    }
+  })
 })
 
-app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
+//used for pushing on heroku
+// app.use(express.static(path.join(__dirname, 'build')));
+
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+// });
 
 const PORT = process.env.PORT || 8080;
 

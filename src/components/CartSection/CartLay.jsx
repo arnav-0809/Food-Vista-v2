@@ -4,9 +4,11 @@ import {Container,Row,Col} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../Header";
 import axios from "axios";
+import {Redirect} from "react-router-dom";
+import {ToastContainer,toast} from "react-toastify";
 
 function Cart() {
-
+  
   const style={
     display:"inline-block",
     marginRight:"20px"
@@ -20,8 +22,9 @@ function Cart() {
 
   var price=0;
   var key=0;
-  var[databaseOrder,setDatabaseOrder]=useState([]);
-
+  const[databaseOrder,setDatabaseOrder]=useState([]);
+  const[orderPrice,setOrderPrice]=useState(0);
+  const[place,setPlace]=useState(false);
   
   let keysToRemove=['BURGERITEM','PIZZAITEM','WAFFLEITEM','FRIESITEM','MOMOSITEM','SHAKESITEM','PASTRYITEM','PASTAITEM','ICECREAMITEM','BURGERPRICE','PIZZAPRICE','WAFFLEPRICE','FRIESPRICE','MOMOSPRICE','SHAKESPRICE','PASTRYPRICE','PASTAPRICE','ICECREAMPRICE']
   keysToRemove.forEach(k =>
@@ -49,29 +52,45 @@ function Cart() {
   //   });
   // })
   // }
-
   const fetchItems= async ()=>{
     try{
-    const {data}=await axios.get("http://localhost:8080/cart");
-      setDatabaseOrder(data);
+    const res=await axios.get("http://localhost:8080/cart")
+          .then(response=>setDatabaseOrder(response.data.orderDetails));
     }catch(err){
       console.log(err);
     }
   };
 
+  const noOrder=()=>{
+      toast.dark("Cart is empty", {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        backgound:"rgb(52, 58, 64) !important"
+        })
+  }
+
   useEffect(()=>{
       fetchItems()
   },[]);
-
+  
+  if(place===true && databaseOrder.length!==0){
+    return <Redirect to="/details"/>
+  }
 
   return (
     <div>
     <Header/>
+    <ToastContainer/>
     <Container>
       <Row className="justify-content-center">
         <Col xs={11} sm={9} md={11} lg={8} className="menuHead">Order Details</Col>
       </Row>
-      {(price!==0) &&<Row className="justify-content-center">{databaseOrder && databaseOrder.map((i)=>
+       <Row className="justify-content-center">{databaseOrder && databaseOrder.map((i)=>
       <div className="cart">
           {i.item.map((j,index)=><div className="cartIn">
           <h1>Item Name : <p style={stylePrice}>{j.item}</p></h1>
@@ -82,7 +101,7 @@ function Cart() {
         )}
         </div>
         )}
-      </Row>}
+      </Row>
       <Row className="justify-content-center">
         <div className="cart">
           <h1 style={style}>Total Price   :</h1>
@@ -91,6 +110,9 @@ function Cart() {
           )}
           <h1 style={stylePrice}>{price}</h1>
         </div>
+      </Row>
+      <Row className="justify-content-center">
+          <button className="addToCart" onClickCapture={noOrder} onClick={()=>{setPlace(prev=>{return !prev})}}>Place Order</button>
       </Row>
     </Container>
   </div>

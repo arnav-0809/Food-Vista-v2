@@ -1,9 +1,23 @@
-import React from "react";
+import React,{useState} from "react";
 import {Nav,Navbar,NavDropdown} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
+import axios from "axios";
 
 function Header(){
+  const[logout,setLogout]=useState(false);
+  const fetchreq=async()=>{
+    const res=await axios.get("http://localhost:8080/logout")
+    .then((response)=>{
+      if(response.data.success){
+        setLogout(true);
+    }});
+  }
+
+  if(logout){
+    return <Redirect to="/"/>
+  }
+
 return(
  <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
     <Link to="/home" style={{textDecoration:"none"}}>
@@ -47,11 +61,12 @@ return(
       <Link to="/review" style={{textDecoration:"none"}}>
         <Nav.Link className="navItem" href="#reviews">Reviews</Nav.Link>
       </Link>
-      <Link to="/cart" style={{textDecoration:"none"}}>
+      <Link push="true" to="/cart" style={{textDecoration:"none"}}>
       <Nav.Link className="navItem" href="#Cart">Cart</Nav.Link>
       </Link>
     </Nav>
     </Navbar.Collapse>
+    <button className="navbarButton" onClick={fetchreq}>Logout</button>
   </Navbar>
   );
 }
