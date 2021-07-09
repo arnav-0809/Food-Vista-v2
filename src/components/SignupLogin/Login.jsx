@@ -60,7 +60,7 @@ function Login(){
       
 return (
     <div>
-        <Navbar bg="dark" variant="dark">
+        <Navbar className="navbarBackg" variant="dark">
            <Navbar.Brand className="navHead">FoodVista</Navbar.Brand>
         </Navbar>
         <ToastContainer/>

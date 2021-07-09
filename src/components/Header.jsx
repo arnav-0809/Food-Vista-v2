@@ -19,7 +19,7 @@ function Header(){
   }
 
 return(
- <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+ <Navbar collapseOnSelect expand="md"  variant="dark" className="navbarBackg">
     <Link to="/home" style={{textDecoration:"none"}}>
       <Navbar.Brand className="navHead" href="#">FoodVista</Navbar.Brand>
     </Link>

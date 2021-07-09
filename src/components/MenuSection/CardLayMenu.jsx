@@ -15,8 +15,12 @@ function increase(){
 
 //updating the count of the food items by retrieving data from database
 const fetchItems= async ()=>{
-    const{data}=await axios.get("http://localhost:8080")
-    setItems(data);
+    try{
+        const res=await axios.get("http://localhost:8080/cart")
+            .then(response=>setItems(response.data.orderDetails));
+    }catch(err){
+          console.log(err);
+    }
 };
 
 const item4=()=>{items.map((i)=>
@@ -57,7 +61,7 @@ function decrease(){
 //rendering the page
 return(
 <Col xs={8} sm={7} md={4} lg={3} className="contain">
-<Card bg="dark" className="items">
+<Card className="items">
     <Card.Img className="itemsIMG" varient="top" src={props.img} alt={props.alt}/>
     <Card.Body>
     <Card.Title><em>{props.name}</em></Card.Title>

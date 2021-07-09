@@ -81,8 +81,12 @@ function cart(itemId,item,price,count){
 
 //updating the local storage on refreshing by retrieving data from database
 const fetchData= async ()=>{
-    const{data}=await axios.get("http://localhost:8080")
-    setDatabaseOrder(data);
+    try{
+        const res=await axios.get("http://localhost:8080/cart")
+              .then(response=>setDatabaseOrder(response.data.orderDetails));
+        }catch(err){
+          console.log(err);
+        }
  
 };
 
@@ -118,7 +122,7 @@ return(
 <Header/>
 <Container>
     <Row className="justify-content-center">
-        <Col xs={12} sm={9} md={11} lg={8} className="menuHead">FriesMenu</Col>
+        <Col xs={10} sm={9} md={11} lg={8} className="menuHead">FriesMenu</Col>
     </Row>
 {/*1st row*/}
     <Row className="justify-content-center">

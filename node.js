@@ -36,6 +36,7 @@ app.use(passport.session());
 mongoose.connect("mongodb+srv://admin-arnav:Test123@cluster0.148tt.mongodb.net/foodDB", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.set('useCreateIndex', true);
 
+var db = mongoose.connection;
 
 let foodItems = [];
 let orderItems=[];
@@ -44,6 +45,7 @@ var userid = "";
 
 //Food Schema declared
 const foodSchema = new mongoose.Schema({
+  username:String,
   id: Number,
   item: Array,
   price: Number
@@ -182,8 +184,8 @@ app.post("/login", function (req, res) {
 
 //Posting users and food items to database 
 app.post("/", function (req, res) {
-  //Deleting food from the food collection of the database
-  Food.deleteOne({ id: req.body.id }, function (err) {
+  // Deleting food from the food collection of the database
+  Food.deleteOne({username:userid, id: req.body.id }, function (err) {
     if (err) {
       console.log(err);
     }
@@ -194,6 +196,7 @@ app.post("/", function (req, res) {
 
   //Fetching food item details from the frontend
   const food = new Food({
+    username:userid,
     id: req.body.id,
     item: req.body.item,
     price: req.body.price
@@ -263,7 +266,7 @@ app.get("/delete/:ID", function (req, res) {
   }
 
   //removing an item when the delete icon is clicked
-  Food.findOneAndUpdate({ id: parseInt(shopid) }, { $pull: { item: { itemId: parseInt(itemid) } } }, { multi: true, new: true }, function (err, foundFood) {
+  Food.findOneAndUpdate({ username:userid,id: parseInt(shopid)}, { $pull: { item: { itemId: parseInt(itemid) } } }, { multi: true, new: true }, function (err, foundFood) {
     if (err) {
       console.log(err);
     } else {
@@ -273,7 +276,7 @@ app.get("/delete/:ID", function (req, res) {
       }
       );
 
-      Food.updateOne({ id: parseInt(shopid) }, { price: priceCut }, function (err) {
+      Food.updateOne({ username:userid }, { price: priceCut }, function (err) {
         if (err) {
           console.log(err);
         }
@@ -282,7 +285,7 @@ app.get("/delete/:ID", function (req, res) {
   });
 
   //removing a food item when the delete icon is clicked
-  User.findOneAndUpdate({ username: userid }, { $pull: { orderDetails: { id: parseInt(shopid) } } }, { multi: true, new: true }, function (err, foundFood) {
+  User.findOneAndUpdate({ username: userid}, { $pull: { orderDetails: { id: parseInt(shopid) } } }, { multi: true, new: true }, function (err, foundFood) {
     if (err) {
       console.log(err);
     } else {
@@ -303,6 +306,7 @@ app.get("/delete/:ID", function (req, res) {
       });
     }
   });
+  
 
   res.redirect("/");
 })
@@ -353,7 +357,10 @@ app.get("/cart",function(req,res){
       orderItems=foundUser.orderDetails;
     }
     res.json(foundUser);
-  })}
+  })}else{
+    orderItems=[];
+    res.json(orderItems);
+  }
 })
 
 //------------------Reviews
@@ -431,18 +438,35 @@ app.post("/details",function(req,res){
     state:req.body.address.state,
     pin:req.body.address.pin
   });
-  User.updateMany({username:userid},{phone:phone,name:name,orderStatus:"placed"},function(err){
+
+  User.updateMany({username:userid},{address:address,phone:phone,name:name,orderStatus:"placed"},function(err){
     if(err){
       console.log(err);
     }
   });
 
-  User.updateOne({username:userid},{address:address},function(err){
+  User.findOne({username:userid},function(err,foundUser){
     if(err){
+      console.log(err);
+    }else{
+      if(foundUser.orderStatus==="placed")
+      {
+        foundUser.orderDetails=[];
+        foundUser.orderStatus="not placed";
+        foundUser.totalPrice=0;
+        foundUser.save();
+      }
+    }
+  })
+
+  Food.deleteMany({username:userid},function(err){
+    if(err)
+    {
       console.log(err);
     }
   })
-})
+
+});
 
 
 //used for pushing on heroku
