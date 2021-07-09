@@ -381,6 +381,7 @@ app.get("/cart",function(req,res){
     if(err){
       console.log(err);
     }else{
+      if(foundUser){
       foundUser.orderDetails.map((i)=>{
         if(i.item.length===0){
           User.findOneAndUpdate({username:userid},{$pull:{orderDetails:{id:parseInt(i.id)}}},function(err){
@@ -392,6 +393,7 @@ app.get("/cart",function(req,res){
           })
         }
       })
+    }
     }
   })
 })
