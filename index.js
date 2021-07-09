@@ -135,10 +135,12 @@ app.post("/register", function (req, res) {
   User.register({ username: req.body.username }, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
+      res.json({success:false})
     } else {
       console.log("successfull")
       passport.authenticate("local")(req, res, function () {
         userid = req.body.username;
+        res.json({success:true});
         console.log(userid);
       });
     }
@@ -275,7 +277,7 @@ app.get("/delete/:ID", function (req, res) {
       }
       );
 
-      Food.updateOne({ username:userid }, { price: priceCut }, function (err) {
+      Food.updateOne({ username:userid,id: parseInt(shopid) }, { price: priceCut }, function (err) {
         if (err) {
           console.log(err);
         }
@@ -334,7 +336,7 @@ app.get("/food", function (req, res) {
     foundFood.forEach(function (food) {
       arr.push(food);
       if (food.item.length === 0) {
-        Food.deleteOne({ id: food.id }, function (err) {
+        Food.deleteOne({ username:userid,id: food.id }, function (err) {
           if (err) {
             console.log(err);
           }

@@ -38,8 +38,21 @@ function Signup(){
       {
        const request=await axios.post("/register",body,{
          headers: {'Content-Type': 'application/json' }
-       }).then(
-      setPasswordMatch(true));
+       })
+       setPasswordMatch(request.data.success);
+       if(!passwordMatch)
+      {
+        toast.dark("User is already registered !", {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        backgound:"rgb(52, 58, 64) !important"
+        });
+       }
       }
     else if(!isValid)
      {
