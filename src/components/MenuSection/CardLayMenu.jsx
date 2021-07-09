@@ -16,7 +16,7 @@ function increase(){
 //updating the count of the food items by retrieving data from database
 const fetchItems= async ()=>{
     try{
-        const res=await axios.get("http://localhost:8080/cart")
+        const res=await axios.get("/cart")
             .then(response=>setItems(response.data.orderDetails));
     }catch(err){
           console.log(err);

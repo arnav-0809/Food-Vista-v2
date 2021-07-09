@@ -36,7 +36,7 @@ function Signup(){
     try{
       if(values.password===revalues.password && values.password!=='' && isValid)
       {
-       const request=await axios.post("http://localhost:8080/register",body,{
+       const request=await axios.post("/register",body,{
          headers: {'Content-Type': 'application/json' }
        });
       setPasswordMatch(true);

@@ -23,7 +23,6 @@ function Cart() {
   var price=0;
   var key=0;
   const[databaseOrder,setDatabaseOrder]=useState([]);
-  const[orderPrice,setOrderPrice]=useState(0);
   const[place,setPlace]=useState(false);
   
   let keysToRemove=['BURGERITEM','PIZZAITEM','WAFFLEITEM','FRIESITEM','MOMOSITEM','SHAKESITEM','PASTRYITEM','PASTAITEM','ICECREAMITEM','BURGERPRICE','PIZZAPRICE','WAFFLEPRICE','FRIESPRICE','MOMOSPRICE','SHAKESPRICE','PASTRYPRICE','PASTAPRICE','ICECREAMPRICE']
@@ -33,28 +32,17 @@ function Cart() {
   
   //deleting an item
   async function handleClick(itemId,id){
-    const res=await axios.get(`http://localhost:8080/delete/${itemId}`)
+    const res=await axios.get(`/delete/${itemId}`)
     .then(
       fetchItems(),
       window.location.reload(false),
-      // reactDeletion(itemId)
       );
   }
 
-  // function reactDeletion(itemId){
-  //   setDatabaseOrder(prevItems=>{
-  //     return prevItems.filter((reviewItem)=>{
-  //       reviewItem.item.map((i)=>{
-  //       console.log(itemId,i.itemId)
-  //       console.log(itemId===i.itemId)
-  //       return i.itemId!==itemId
-  //   })
-  //   });
-  // })
-  // }
+
   const fetchItems= async ()=>{
     try{
-    const res=await axios.get("http://localhost:8080/cart")
+    const res=await axios.get("/cart")
           .then(response=>setDatabaseOrder(response.data.orderDetails));
     }catch(err){
       console.log(err);

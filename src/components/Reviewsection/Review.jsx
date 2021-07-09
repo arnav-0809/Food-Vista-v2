@@ -6,7 +6,7 @@ function Review(props) {
    
    const[sameUser,setSameUser]=useState(false);
    const fetchData=async()=>{
-     const res=await axios.get("http://localhost:8080/reviewdelete")
+     const res=await axios.get("/reviewdelete")
      .then((response)=>{
        if(response.data.username===props.username)
        {

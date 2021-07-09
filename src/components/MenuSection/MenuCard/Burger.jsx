@@ -48,7 +48,7 @@ var[databaseOrder,setDatabaseOrder]=useState([]);
             });
 
       }
-     const request=await axios.post("http://localhost:8080",body,{
+     const request=await axios.post("/",body,{
     headers: {'Content-Type': 'application/json' }
   });
  }
@@ -108,7 +108,7 @@ function cart(itemId,item,price,count){
 //updating the local storage on refreshing by retrieving data from database
 const fetchData= async ()=>{
     try{
-        const res=await axios.get("http://localhost:8080/cart")
+        const res=await axios.get("/cart")
             .then(response=>setDatabaseOrder(response.data.orderDetails));
     }catch(err){
           console.log(err);

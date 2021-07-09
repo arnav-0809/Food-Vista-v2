@@ -28,7 +28,7 @@ function Details(){
                 progress: undefined,
                 backgound:"rgb(52, 58, 64) !important"
                 });
-        const res= await axios.post("http://localhost:8080/details",JSON.stringify({address:address,name:name,phone:phone}),{headers:{'Content-Type':'application/json'}})
+        const res= await axios.post("/details",JSON.stringify({address:address,name:name,phone:phone}),{headers:{'Content-Type':'application/json'}})
         .then(setTimeout(()=>setHome(true),3000));
         }else{
             toast.dark("Fill in all the details", {

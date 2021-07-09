@@ -8,11 +8,11 @@ function App(props) {
   const[databaseReviews,setDatabaseReviews]=useState([]);
 
   const postItems=async(newReview)=>{
-    const res= await axios.post("http://localhost:8080/review",JSON.stringify({title:newReview.title,content:newReview.content}), {headers:{'Content-Type':'application/json'}});
+    const res= await axios.post("/review",JSON.stringify({title:newReview.title,content:newReview.content}), {headers:{'Content-Type':'application/json'}});
   }
 
   const fetchData=async()=>{
-    const {data}=await axios.get("http://localhost:8080/review");
+    const {data}=await axios.get("/review");
     setDatabaseReviews(data);
   }
 
@@ -23,14 +23,9 @@ function App(props) {
   }
   
   async function deleteReview(id,reviewid){
-    // setDatabaseReviews(prevReviews=>{
-    //   return prevReviews.filter((reviewItem,index)=>{
-    //     return index!==id;
-    //   });
-    // });
     console.log(reviewid);
     try{
-    const res= await axios.get(`http://localhost:8080/review/${reviewid}`)
+    const res= await axios.get(`/review/${reviewid}`)
     .then(
       fetchData(),
       window.location.reload(false),

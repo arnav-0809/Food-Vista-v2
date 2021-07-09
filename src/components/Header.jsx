@@ -7,7 +7,7 @@ import axios from "axios";
 function Header(){
   const[logout,setLogout]=useState(false);
   const fetchreq=async()=>{
-    const res=await axios.get("http://localhost:8080/logout")
+    const res=await axios.get("/logout")
     .then((response)=>{
       if(response.data.success){
         setLogout(true);
