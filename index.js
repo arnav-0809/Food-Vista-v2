@@ -471,6 +471,8 @@ app.post("/details",function(req,res){
   User.updateMany({username:userid},{address:address,phone:phone,name:name,orderStatus:"placed"},function(err){
     if(err){
       console.log(err);
+    }else{
+      console.log("details")
     }
   });
 
@@ -478,6 +480,7 @@ app.post("/details",function(req,res){
     if(err){
       console.log(err);
     }else{
+      console.log("hello");
       if(foundUser.orderStatus==="placed")
       {
         foundUser.orderDetails=[];
@@ -492,6 +495,8 @@ app.post("/details",function(req,res){
     if(err)
     {
       console.log(err);
+    }else{
+      console.log("hello food");
     }
   })
 

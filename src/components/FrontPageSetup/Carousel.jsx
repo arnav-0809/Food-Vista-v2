@@ -14,7 +14,7 @@ function FirstCarousel() {
             alt="Chicken Burger"
           />
           <Carousel.Caption>
-            <p>Chciken Burger</p>
+            <p>Chicken Burger</p>
             <em>now with new chilly sauce</em>
           </Carousel.Caption>
         </Carousel.Item>
