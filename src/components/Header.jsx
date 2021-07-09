@@ -58,10 +58,10 @@ return(
           <NavDropdown.Item href="#action/3.1" className="navItem">IceCream Menu</NavDropdown.Item>
         </Link>
       </NavDropdown>
-      <Link to="/review" style={{textDecoration:"none"}}>
+      <Link to="/userreview" style={{textDecoration:"none"}}>
         <Nav.Link className="navItem" href="#reviews">Reviews</Nav.Link>
       </Link>
-      <Link push="true" to="/cart" style={{textDecoration:"none"}}>
+      <Link push="true" to="/usercart" style={{textDecoration:"none"}}>
       <Nav.Link className="navItem" href="#Cart">Cart</Nav.Link>
       </Link>
     </Nav>

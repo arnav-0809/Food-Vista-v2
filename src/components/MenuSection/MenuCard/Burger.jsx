@@ -48,7 +48,7 @@ var[databaseOrder,setDatabaseOrder]=useState([]);
             });
 
       }
-     const request=await axios.post("/",body,{
+     const request=await axios.post("/food",body,{
     headers: {'Content-Type': 'application/json' }
   });
  }

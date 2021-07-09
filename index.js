@@ -140,7 +140,6 @@ app.post("/register", function (req, res) {
       passport.authenticate("local")(req, res, function () {
         userid = req.body.username;
         console.log(userid);
-        res.redirect("/");
       });
     }
   });
@@ -183,7 +182,7 @@ app.post("/login", function (req, res) {
 
 
 //Posting users and food items to database 
-app.post("/", function (req, res) {
+app.post("/food", function (req, res) {
   // Deleting food from the food collection of the database
   Food.deleteOne({username:userid, id: req.body.id }, function (err) {
     if (err) {
@@ -325,11 +324,10 @@ app.get("/delete/:ID", function (req, res) {
     }
   })
 
-  res.redirect("/");
 })
 
 //Fetching food Collection and displaying it on this route
-app.get("/", function (req, res) {
+app.get("/food", function (req, res) {
 
   Food.find({}, function (err, foundFood) {
     var arr = [];

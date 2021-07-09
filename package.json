@@ -33,7 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start":"node node.js",
+    "start":"node index.js",
     "react-install":"npm i",
     "heroku-postbuild":"npm run react-install && npm run build"
   },
@@ -55,7 +55,7 @@
       "last 1 safari version"
     ]
   },
-  "main": "node.js",
+  "main": "index.js",
   "devDependencies": {},
   "author": "",
   "license": "ISC"

@@ -29,7 +29,7 @@ function App(){
             <Route path="/" exact component={Login}/>
             <Route path="/signup" exact component={Signup}/>
             <Route path="/home" exact component={Home}/>
-            <Route path="/review" component={ReviewFood}/>
+            <Route path="/userreview" component={ReviewFood}/>
             <Route path="/burgermenu" component={BurgerFood}/>
             <Route path="/friesmenu" component={FriesFood}/>
             <Route path="/icecreammenu" component={IceCreamFood}/>
@@ -39,8 +39,8 @@ function App(){
             <Route path="/pizzamenu" component={PizzaFood}/>
             <Route path="/shakesmenu" component={ShakesFood}/>
             <Route path="/wafflemenu" component={WaffleFood}/>
-            <Route path="/cart" component={CartFood}/>
-            <Route path="/details" component={DetailsFood}/>
+            <Route path="/usercart" component={CartFood}/>
+            <Route path="/userdetails" component={DetailsFood}/>
             </Switch>
         </div>
         </Router>

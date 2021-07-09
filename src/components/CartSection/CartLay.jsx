@@ -67,7 +67,7 @@ function Cart() {
   },[]);
   
   if(place===true && databaseOrder.length!==0){
-    return <Redirect to="/details"/>
+    return <Redirect to="/userdetails"/>
   }
 
   return (
