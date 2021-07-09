@@ -207,7 +207,7 @@ app.post("/food", function (req, res) {
     }
     else {
       //Deleting the previous record of the existing food items of a particuar shop
-      User.findOneAndUpdate({ username: userid }, { $pull: { orderDetails: { id: parseInt(food.id) } } }, { multi: true }, function (err) {
+      User.findOneAndUpdate({ username: userid }, { $pull: { orderDetails: { id: parseInt(food.id) } } }, { multi: true,new:true }, function (err) {
         if (err) {
           console.log(err);
         }
@@ -340,14 +340,6 @@ app.get("/food", function (req, res) {
           }
           else {
             console.log("deleted");
-          }
-        })
-        User.findOneAndUpdate({ username: userid }, { $pull: { orderDetails: { id: parseInt(food.id) } } }, { multi: true }, function (err) {
-          if (err) {
-            console.log(err);
-          }
-          else {
-            console.log("deleted from userschema");
           }
         })
       }
