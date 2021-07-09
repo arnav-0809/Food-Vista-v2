@@ -38,8 +38,8 @@ function Signup(){
       {
        const request=await axios.post("/register",body,{
          headers: {'Content-Type': 'application/json' }
-       });
-      setPasswordMatch(true);
+       }).then(
+      setPasswordMatch(true));
       }
     else if(!isValid)
      {

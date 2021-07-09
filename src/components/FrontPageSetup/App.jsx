@@ -51,7 +51,7 @@ function CheckLogin(){
 const[login,setLogin]=useState(true);
     
     const fetchLogin=async()=>{
-        const res=await axios.get("http://localhost:8080/user")
+        const res=await axios.get("/user")
         .then(response=>{
             if(response.data.username.length===0)
             {
