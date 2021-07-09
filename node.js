@@ -33,7 +33,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://admin-arnav:Test123@cluster0.148tt.mongodb.net/foodDB", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.set('useCreateIndex', true);
 
 var db = mongoose.connection;
@@ -505,11 +505,11 @@ app.post("/details",function(req,res){
 
 
 //used for pushing on heroku
-// app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 8080;
 
