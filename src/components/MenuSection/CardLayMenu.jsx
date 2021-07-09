@@ -23,7 +23,7 @@ const fetchItems= async ()=>{
     }
 };
 
-const item4=()=>{items.map((i)=>
+const item4=()=>{items &&items.map((i)=>
           i.item.map((j)=>{
             //    console.log(j);
               if(j.count!==null && props.name===j.item)

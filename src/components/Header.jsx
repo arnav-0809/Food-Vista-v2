@@ -29,7 +29,7 @@ return(
       <Link to="/home" style={{textDecoration:"none"}}>
         <Nav.Link className="navItem" href="#Home">Home</Nav.Link>
       </Link>
-      <NavDropdown title="Menu" id="basic-nav-dropdown" className="navItem">
+      <NavDropdown title="Menu" id="basic-nav-dropdown" className="navItem" style={{color: "rgb(138, 137, 137)"}}>
         <Link to="/burgermenu" style={{textDecoration:"none"}}>
           <NavDropdown.Item href="#action/3.1" className="navItem" >Burger Menu</NavDropdown.Item>
         </Link>

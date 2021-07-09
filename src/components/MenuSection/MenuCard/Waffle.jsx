@@ -4,6 +4,7 @@ import CardLay from "../CardLayMenu";
 import waffle from "../menudetails/Waffle";
 import Header from "../../Header";
 import axios from "axios";
+import { ToastContainer,toast } from "react-toastify";
 
 function Menu(){
 
@@ -21,6 +22,31 @@ var[databaseOrder,setDatabaseOrder]=useState([]);
 
 
   const postItems= async()=>{
+    if(items.length!==0)
+    {
+      toast.dark("Order has been placed to cart", {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          backgound:"rgb(52, 58, 64) !important"
+          });
+    }else{
+      toast.dark("No food items selected", {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          backgound:"rgb(52, 58, 64) !important"
+          });
+
+    }
      const request=await axios.post("http://localhost:8080",body,{
     headers: {'Content-Type': 'application/json' }
   });
@@ -119,6 +145,7 @@ item2();
 return(
 <div>
 <Header/>
+<ToastContainer/>
 <Container>
     <Row className="justify-content-center">
         <Col xs={10} sm={9} md={11} lg={8} className="menuHead">WaffleMenu</Col>

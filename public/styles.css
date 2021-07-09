@@ -60,7 +60,12 @@ body {
 }
 
 .dropdown-menu {
-  background-color: #343a40 !important;
+  background: rgba(52, 58, 64, 0.95) !important;
+}
+
+.dropdropdown-menu {
+  box-shadow: 0 6px 6px rgb(7, 7, 7) !important;
+  backdrop-filter: saturate(100%) blur(5px) !important;
 }
 
 .navHead {
@@ -76,7 +81,6 @@ body {
 }
 
 .navbarBackg {
-  backdrop-filter: saturate(170%) blur(10px) !important;
   background: rgba(52, 58, 64, 0.6) !important;
   box-shadow: 0 2px 3px rgb(7, 7, 7);
   border-radius: 0 0 10px 10px;
@@ -90,7 +94,7 @@ body {
   font-family: "Roboto Mono", monospace;
   border-radius: 5px;
   padding: 8px 15px;
-  margin-right: 10px;
+  margin-right: 5px;
   backdrop-filter: saturate(100%) blur(5px);
 }
 
@@ -218,13 +222,14 @@ body {
 
 /*------------------------------------------ReviewSection CSS-----------------------------------------------*/
 .review {
-  background: #343a40;
-  border-radius: 7px;
-  box-shadow: 0 2px 5px rgb(138, 137, 137);
+  border-radius: 10px;
+  background: rgba(52, 58, 64, 0.6);
+  box-shadow: 0 3px 4px rgb(7, 7, 7);
+  backdrop-filter: saturate(100%) blur(5px);
   padding: 10px;
-  width: 70%;
+  width: 60%;
   margin: 16px;
-  margin-left: 14.5%;
+  margin-left: 19%;
   float: left;
   font-family: "Roboto Mono", monospace;
 }
@@ -253,7 +258,23 @@ body {
   height: 36px;
   cursor: pointer;
   outline: none;
-  background: #343a40;
+  background: rgba(86, 86, 90, 0.01);
+}
+
+@media only screen and (max-width: 768px) {
+  form.create-review {
+    width: 300px !important;
+    margin: 30px auto 20px auto !important;
+  }
+  .review p {
+    margin-bottom: 4px !important;
+  }
+  .review h1 {
+    font-size: 1 rem !important;
+  }
+  .review h3 {
+    font-size: 1.4rem;
+  }
 }
 
 form.create-review {
@@ -262,7 +283,7 @@ form.create-review {
   margin: 30px auto 20px auto;
   padding: 10px;
   border-radius: 7px;
-  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  box-shadow: 0 3px 4px rgb(7, 7, 7);
 }
 form.create-review input,
 form.create-review textarea {
@@ -272,7 +293,7 @@ form.create-review textarea {
   outline: none;
   font-family: inherit;
   resize: none;
-  background: #343a40;
+  background: rgba(52, 58, 64, 0.7);
   font-family: "Roboto Mono", monospace;
   font-size: 1.2rem;
 }
@@ -391,7 +412,6 @@ form.create-review button {
   margin: 16px;
   float: left;
   font-family: "Roboto Mono", monospace;
-  display: flex;
 }
 
 .cartIn {
@@ -399,9 +419,8 @@ form.create-review button {
   box-shadow: 0 3px 4px rgb(7, 7, 7);
   backdrop-filter: saturate(100%) blur(5px);
   border-radius: 7px;
-  padding: 10px;
-  margin: 2% 4%;
-  flex: 1;
+  padding: 15px;
+  margin: 4% 4%;
   font-family: "Roboto Mono", monospace;
 }
 
@@ -422,14 +441,14 @@ form.create-review button {
 
 @media only screen and (max-width: 768px) {
   .cart h1 {
-    font-size: 1.1rem;
+    font-size: 1rem !important;
   }
   .cart p {
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
   }
   .cartIn {
     flex: 1;
-    margin: 2% 4%;
+    margin: 4% 4% !important;
   }
 }
 
@@ -444,7 +463,7 @@ form.create-review button {
   height: 36px;
   cursor: pointer;
   outline: none;
-  background: rgba(52, 58, 64, 0.6);
+  background: rgba(52, 58, 64, 0.01);
 }
 
 /*-----------------------------------------------------Cart section ends------------------------------------------------*/
@@ -459,7 +478,7 @@ form.create-review button {
   width: 45vh;
   height: 47vh;
   border-radius: 30px;
-  box-shadow: 0 2px 5px rgb(7, 7, 7);
+  box-shadow: 0 3px 5px rgb(7, 7, 7);
   backdrop-filter: saturate(170%) blur(10px) !important;
   background: rgba(52, 58, 64, 0.6) !important;
 }
@@ -520,7 +539,7 @@ form.create-review button {
   width: 48vh;
   height: 50vh;
   border-radius: 30px;
-  box-shadow: 0 2px 5px rgb(7, 7, 7);
+  box-shadow: 0 3px 5px rgb(7, 7, 7);
   backdrop-filter: saturate(170%) blur(10px) !important;
   background: rgba(52, 58, 64, 0.6) !important;
 }
@@ -577,6 +596,46 @@ input:-webkit-autofill:active {
   box-shadow: 0 0 0 30px rgb(86, 86, 90) inset !important;
   -webkit-text-fill-color: rgb(185, 183, 183) !important;
   border-left: none !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .signup,
+  .login {
+    height: 40vh !important;
+    width: 40vh !important;
+    left: 48% !important;
+  }
+  .signupEmail,
+  .signupPassword {
+    margin-top: 1.5vh !important;
+    margin-left: 2vh !important;
+  }
+
+  .loginEmail,
+  .loginPassword {
+    margin-left: 2vh !important;
+    margin-top: 3vh !important;
+  }
+
+  .signUpHead,
+  .loginHead {
+    margin-left: 12vh !important;
+    font-size: 34px;
+  }
+  .signupLink,
+  .loginLink {
+    margin-top: 2vh !important;
+    margin-bottom: 1vh;
+    margin-left: 6vh !important;
+  }
+  .signupButton,
+  .loginButton {
+    margin-top: 1vh !important;
+    margin-left: 14.5vh !important;
+  }
+  .MuiOutlinedInput-input {
+    padding: 14px !important;
+  }
 }
 
 /*----------------------------------------------------Signup/Login Section ends------------------------------------------------*/

@@ -306,7 +306,24 @@ app.get("/delete/:ID", function (req, res) {
       });
     }
   });
-  
+
+  User.findOne({username:userid},function(err,foundUser){
+    if(err){
+      console.log(err);
+    }else{
+      foundUser.orderDetails.map((i)=>{
+        if(i.item.length===0){
+          User.findOneAndUpdate({username:userid},{$pull:{orderDetails:{id:parseInt(i.id)}}},function(err){
+            if(err){
+              console.log(err);
+            }else{
+              console.log("length 0 deleted");
+            }
+          })
+        }
+      })
+    }
+  })
 
   res.redirect("/");
 })
@@ -361,9 +378,27 @@ app.get("/cart",function(req,res){
     orderItems=[];
     res.json(orderItems);
   }
+
+  User.findOne({username:userid},function(err,foundUser){
+    if(err){
+      console.log(err);
+    }else{
+      foundUser.orderDetails.map((i)=>{
+        if(i.item.length===0){
+          User.findOneAndUpdate({username:userid},{$pull:{orderDetails:{id:parseInt(i.id)}}},function(err){
+            if(err){
+              console.log(err);
+            }else{
+              console.log("length 0 deleted");
+            }
+          })
+        }
+      })
+    }
+  })
 })
 
-//------------------Reviews
+//------------------Reviews--------
 
 //Generating review id
   function getReviewId(){
