@@ -175,6 +175,19 @@ app.post("/login", function (req, res) {
         res.json({ success: true });
         userid = req.body.username;
         console.log(userid);
+        User.findOne({username:userid},function(err,foundUser){
+          if(err){
+            console.log(err);
+          }else{
+            if(foundUser.orderStatus==="placed")
+            {
+              foundUser.orderDetails=[];
+              foundUser.orderStatus="not placed";
+              foundUser.totalPrice=0;
+              foundUser.save();
+            }
+          }
+        })
       });
     }
 
@@ -471,32 +484,13 @@ app.post("/details",function(req,res){
   User.updateMany({username:userid},{address:address,phone:phone,name:name,orderStatus:"placed"},function(err){
     if(err){
       console.log(err);
-    }else{
-      console.log("details")
     }
   });
-
-  User.findOne({username:userid},function(err,foundUser){
-    if(err){
-      console.log(err);
-    }else{
-      console.log("hello");
-      if(foundUser.orderStatus==="placed")
-      {
-        foundUser.orderDetails=[];
-        foundUser.orderStatus="not placed";
-        foundUser.totalPrice=0;
-        foundUser.save();
-      }
-    }
-  })
 
   Food.deleteMany({username:userid},function(err){
     if(err)
     {
       console.log(err);
-    }else{
-      console.log("hello food");
     }
   })
 
