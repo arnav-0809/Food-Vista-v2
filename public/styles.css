@@ -135,7 +135,7 @@ body {
   margin-top: 10px;
   margin-bottom: 0;
   box-shadow: 0 5px 3px rgb(7, 7, 7);
-  backdrop-filter: saturate(170%) blur(10px) !important;
+  /* backdrop-filter: saturate(170%) blur(10px) !important; */
   background: rgba(52, 58, 64, 0.6) !important;
   border-radius: 10px 10px 0 0;
 }
