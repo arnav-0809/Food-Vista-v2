@@ -33,10 +33,11 @@ function Cart() {
   //deleting an item
   async function handleClick(itemId,id){
     const res=await axios.get(`/delete/${itemId}`)
-    .then(
-      fetchItems(),
-      window.location.reload(false),
-      );
+    .then((response)=>{
+      if(response.data.success){
+        fetchItems()
+      }
+    });
   }
 
 
@@ -109,3 +110,5 @@ function Cart() {
 
 export default Cart;
 
+// fetchItems(),
+//       window.location.reload(false),

@@ -302,6 +302,7 @@ app.get("/delete/:ID", function (req, res) {
   User.findOneAndUpdate({ username: userid}, { $pull: { orderDetails: { id: parseInt(shopid) } } }, { multi: true, new: true }, function (err, foundFood) {
     if (err) {
       console.log(err);
+      res.json({success:false});
     } else {
       Food.findOne({ id: parseInt(shopid) }, function (err, foundFood) {
         if (err) {
@@ -318,6 +319,7 @@ app.get("/delete/:ID", function (req, res) {
           }
         }
       });
+      res.json({success:true});
     }
   });
 
@@ -460,9 +462,11 @@ app.get("/review/:id",function(req,res){
   User.findOneAndUpdate({ username: userid }, { $pull: { reviews: { reviewid: ID } } }, { new:true}, function (err) {
     if (err) {
       console.log(err);
+      res.json({success:false});
     }
     else {
       console.log("deleted from userschema");
+      res.json({success:true});
     }
   })
 })

@@ -26,10 +26,12 @@ function App(props) {
     console.log(reviewid);
     try{
     const res= await axios.get(`/review/${reviewid}`)
-    .then(
-      fetchData(),
-      window.location.reload(false),
-      )
+    .then((response)=>{
+      if(response.data.success)
+      {
+        fetchData()
+      }
+    })
     }catch(err){
       console.log(err);
     }
