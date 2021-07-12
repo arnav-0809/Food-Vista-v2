@@ -312,7 +312,7 @@ app.get("/delete/:ID", function (req, res) {
           console.log("added");
           if (foundFood !== null) {
             User.findOne({ username: userid }, function (err, foundUser) {
-              foundUser.totalPrice = priceCut;
+              foundFood.price = priceCut;
               foundUser.orderDetails.push(foundFood);
               foundUser.save();
             })
