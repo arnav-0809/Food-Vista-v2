@@ -304,7 +304,7 @@ app.get("/delete/:ID", function (req, res) {
       console.log(err);
       res.json({success:false});
     } else {
-      Food.findOne({ id: parseInt(shopid) }, function (err, foundFood) {
+      Food.findOne({ username: userid,id: parseInt(shopid) }, function (err, foundFood) {
         if (err) {
           console.log(err);
         }
@@ -312,7 +312,7 @@ app.get("/delete/:ID", function (req, res) {
           console.log("added");
           if (foundFood !== null) {
             User.findOne({ username: userid }, function (err, foundUser) {
-              foundFood.price = priceCut;
+              foundUser.price = priceCut;
               foundUser.orderDetails.push(foundFood);
               foundUser.save();
             })
